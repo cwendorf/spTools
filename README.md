@@ -8,9 +8,7 @@
 
 ### Overview
 
-`spTools` is a lightweight collection of helper functions that enhance the usability, formatting, and interpretability of statistical results produced by the `statpsych` package by Douglas Bonett.
-
-`statpsych` provides high-accuracy confidence interval methods for means, medians, variances, proportions, correlations, and standardized effect sizes. However, its functions are designed in a traditional R programming style, making them less convenient for modern workflows involving the native pipe (|>) and other conventions.
+`spTools` is a small collection of helper functions that enhance the usability and interpretability of statistical results from the `statpsych` package by Douglas Bonett. Where `statpsych` provides high-accuracy confidence interval methods for a wide variety of statistics, `spTools` handles the pre-processing of data into the required formats and post-processing the results into more accessible and readable forms.
 
 ### Installation
 
