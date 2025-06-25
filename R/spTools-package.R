@@ -1,19 +1,19 @@
-#' CALM: Contrast Algorithms for Linear Models
+#' spTools: Helper Functions for the statpsych Package
 #'
-#' CALM provides a suite of functions to create and apply contrast codes for linear models.
+#' A companion package that streamlines data preparation and result formatting for use with the statpsych package.
 #'
 #' @details
-#' CALM is an R package for creating and interpreting contrast codes for linear models. 
-#' It is an extension of the built-in contrast specifications in R and inspired by Venables `codingMatrices` package, 
-#' but it includes codes not available in other packages. 
-#' In addition to providing contrast specifications, it includes functions for directly converting 
-#' hypothesized differences (contrasts) into linear model codes (and vice versa).
+#' spTools is a small collection of helper functions that enhance the usability and interpretability 
+#' of statistical results from the statpsych package by Douglas Bonett. 
+#' Where statpsych provides high-accuracy confidence interval methods for a wide variety of statistics, 
+#' spTools handles the pre-processing of data into the required formats and post-processing 
+#' the results into more accessible and readable forms.
 #'
 #' @author
 #' **Maintainer**: Craig Wendorf 
 #' \email{cwendorf@uwsp.edu}
 #'
 #' @docType package
-#' @name CALM
-#' @aliases CALM-package
+#' @name spTools
+#' @aliases spTools-package
 "_PACKAGE"
