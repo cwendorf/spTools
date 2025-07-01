@@ -14,10 +14,10 @@
 #'
 #' @examples
 #' df <- data.frame(Estimate = 1:3, SE = 0.1, Extra = 4:6)
-#' filter_cols(df, cols = c("Estimate", "SE"))
+#' sp.columns(df, cols = c("Estimate", "SE"))
 #'
 #' @export
-filter_cols <- function(out, cols = c("Estimate", "SE", "df", "LL", "UL")) {
+sp.columns <- function(out, cols = c("Estimate", "SE", "df", "LL", "UL")) {
   filter_one <- function(obj) {
     orig_class <- class(obj)
 
@@ -78,10 +78,10 @@ filter_cols <- function(out, cols = c("Estimate", "SE", "df", "LL", "UL")) {
 #'
 #' @examples
 #' df <- data.frame(A = 1:5, B = letters[1:5])
-#' filter_rows(df, rows = c(1, 3))
+#' sp.rows(df, rows = c(1, 3))
 #'
 #' @export
-filter_rows <- function(out, rows = NULL) {
+sp.rows <- function(out, rows = NULL) {
   filter_one <- function(obj) {
     # Atomic vector → data frame
     if (is.atomic(obj) && !is.data.frame(obj) && !is.matrix(obj)) {
@@ -156,17 +156,17 @@ filter_rows <- function(out, rows = NULL) {
 #' @examples
 #' # Label a single result
 #' result <- list(Estimate = 0.5, SE = 0.1)
-#' labeled <- label_object(result, my_result)
+#' labeled <- sp.label(result, my_result)
 #'
 #' # Label multiple results in a list
 #' list_of_results <- list(
 #'   list(Estimate = 0.5),
 #'   list(Estimate = 0.7)
 #' )
-#' labeled_list <- label_object(list_of_results, t1, t2)
+#' labeled_list <- sp.label(list_of_results, t1, t2)
 #'
 #' @export
-label_object <- function(x, ...) {
+sp.label <- function(x, ...) {
   nm <- as.character(substitute(list(...)))[-1L]
 
   if (is.list(x) && !is.data.frame(x)) {

@@ -18,10 +18,10 @@
 #'
 #' @examples
 #' df <- data.frame(x = c(1.2345, 2.3456), y = c(3.4567, 4.5678))
-#' format_console(df, digits = 2)
+#' sp.console(df, digits = 2)
 #'
 #' @export
-format_console <- function(results, digits = 3, padding = 2, width = NULL, spaced = TRUE, ...) {
+sp.console <- function(results, digits = 3, padding = 2, width = NULL, spaced = TRUE, ...) {
   if (is.null(width)) width <- digits + (padding * 2)
 
   format_one <- function(res) {
@@ -65,10 +65,10 @@ format_console <- function(results, digits = 3, padding = 2, width = NULL, space
 #'
 #' @examples
 #' df <- data.frame(x = c(1.2345, 2.3456), y = c(3.4567, 4.5678))
-#' format_markdown(df, digits = 2)
+#' sp.markdown(df, digits = 2)
 #'
 #' @export
-format_markdown <- function(results, digits = 3, spaced = TRUE, ...) {
+sp.markdown <- function(results, digits = 3, spaced = TRUE, ...) {
   format_one <- function(res) {
     df <- as.data.frame(round(res, digits))
     df[] <- lapply(df, function(col) {
@@ -126,20 +126,20 @@ format_markdown <- function(results, digits = 3, spaced = TRUE, ...) {
 #' result <- data.frame(Estimate = 0.52, SE = 0.12, df = 24)
 #'
 #' # Save as RDS with automatic filename
-#' save_output(result)
+#' preserve(result)
 #'
 #' # Save as TXT with a custom filename
-#' save_output(result, file = "ci_output.txt", format = "txt")
+#' preserve(result, file = "ci_output.txt", format = "txt")
 #'
 #' # Save as CSV with an auto-generated name, into a subfolder
-#' save_output(result, format = "csv", dir = "outputs", name = "ci_mean1")
+#' preserve(result, format = "csv", dir = "outputs", name = "ci_mean1")
 #'
 #' # Save a list of results as RDS
 #' res_list <- list(t1 = result, t2 = result)
-#' save_output(res_list, file = "results_list.rds")
+#' sp.save(res_list, file = "results_list.rds")
 #'
 #' @export
-save_output <- function(x,
+sp.save <- function(x,
                         file = NULL,
                         dir = ".",
                         format = c("rds", "txt", "csv"),
