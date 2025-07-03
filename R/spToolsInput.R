@@ -1,6 +1,7 @@
 # spTools
 ## Input Handling
 
+
 #' Extract Row or Column as Named Vector from Data Frame or Matrix
 #'
 #' This function extracts a single row or column from a matrix or data frame

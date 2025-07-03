@@ -1,7 +1,6 @@
 # spTools
 ## Output Functions
 
-### Format Console Output
 
 #' Format Console Output
 #'
@@ -50,7 +49,6 @@ sp.console <- function(results, digits = 3, padding = 2, width = NULL, spaced = 
   }
 }
 
-### Format Markdown Output
 
 #' Format Output as Markdown Table
 #'
@@ -102,8 +100,6 @@ sp.markdown <- function(results, digits = 3, spaced = TRUE, ...) {
   }
 }
 
-
-### Save Output
 
 #' Save Output to File
 #'

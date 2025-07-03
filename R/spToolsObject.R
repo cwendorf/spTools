@@ -1,7 +1,6 @@
 # spTools
 ## Object Manipulation
 
-### Filter Columns
 
 #' Filter Columns from Data Frame, Matrix, or List
 #'
@@ -65,7 +64,6 @@ sp.columns <- function(out, cols = c("Estimate", "SE", "df", "LL", "UL")) {
   filter_one(out)
 }
 
-### Filter Rows
 
 #' Filter Rows from Data Frame, Matrix, or List
 #'
@@ -137,7 +135,6 @@ sp.rows <- function(out, rows = NULL) {
   filter_one(out)
 }
 
-### Label Objects
 
 #' Label One or More Objects
 #'
