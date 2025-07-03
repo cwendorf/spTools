@@ -169,3 +169,73 @@ sp.save <- function(x,
 
   invisible(file)
 }
+
+
+#' Add test statistic, df, and p-value to Bonett-style CI output
+#'
+#' @param results 1-row matrix output from Bonett-style CI functions (with Estimate, SE, LL, UL)
+#' @param df Optional degrees of freedom (if NULL, try to infer from n)
+#' @param n Optional sample size to infer df if df is missing
+#' @param null_value Hypothesized null value for test statistic (default 0)
+#'
+#' @return 1-row matrix with columns:
+#' Estimate, SE, Statistic, df, p, LL, UL
+#'
+#' @export
+sp.infer <- function(results, df = NULL, n = NULL, null_value = 0) {
+  required_cols <- c("Estimate", "SE", "LL", "UL")
+  if (!all(required_cols %in% colnames(results))) {
+    stop("Input must contain columns: Estimate, SE, LL, UL")
+  }
+
+  results <- as.matrix(results)
+  nr <- nrow(results)
+
+  if (is.null(df)) {
+    if (!is.null(n)) {
+      if (length(n) == 1) n <- rep(n, nr)
+      df <- n - 1
+    } else {
+      df <- rep(NA_real_, nr)
+    }
+  } else {
+    if (length(df) == 1) df <- rep(df, nr)
+    if (length(df) != nr) stop("Length of df must be 1 or equal to number of rows")
+  }
+
+  if (length(null_value) == 1) null_value <- rep(null_value, nr)
+  if (length(null_value) != nr) stop("Length of null_value must be 1 or equal to number of rows")
+
+  est <- as.numeric(results[, "Estimate"])
+  se <- as.numeric(results[, "SE"])
+  ll <- as.numeric(results[, "LL"])
+  ul <- as.numeric(results[, "UL"])
+
+  stat <- (est - null_value) / se
+
+  is_t <- !is.na(df) & is.finite(df) & df > 0
+
+  p <- numeric(nr)
+  for (i in seq_len(nr)) {
+    if (is_t[i]) {
+      p[i] <- 2 * pt(-abs(stat[i]), df[i])
+    } else {
+      p[i] <- 2 * pnorm(-abs(stat[i]))
+      df[i] <- NA
+    }
+  }
+
+  out <- cbind(
+    Estimate = est,
+    SE = se,
+    Statistic = stat,
+    df = df,
+    p = p,
+    LL = ll,
+    UL = ul
+  )
+
+  rownames(out) <- rownames(results)
+
+  return(out)
+}
