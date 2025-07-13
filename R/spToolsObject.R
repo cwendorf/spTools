@@ -18,8 +18,6 @@
 #' @export
 sp.columns <- function(out, cols = c("Estimate", "SE", "df", "LL", "UL")) {
   filter_one <- function(obj) {
-    orig_class <- class(obj)
-
     # Atomic vector → 1-row data frame
     if (is.atomic(obj) && !is.data.frame(obj) && !is.matrix(obj)) {
       obj <- as.data.frame(t(obj))
@@ -89,12 +87,9 @@ sp.rows <- function(out, rows = NULL) {
     # Matrix → convert to data frame, preserve names
     is_matrix <- is.matrix(obj)
     if (is_matrix) {
-      coln <- colnames(obj)
-      rown <- rownames(obj)
       obj_df <- as.data.frame(obj, stringsAsFactors = FALSE)
     } else {
       obj_df <- obj
-      rown <- rownames(obj_df)
     }
 
     if (!is.data.frame(obj_df)) return(NULL)

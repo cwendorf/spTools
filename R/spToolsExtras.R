@@ -82,7 +82,7 @@ ci.lc.mean.ws <- function(alpha, m, s, R, v, n) {
   LL <- Lhat - tcrit * se
   UL <- Lhat + tcrit * se
 
-  # Return a 1-row matrix with named columns — Bonett style
+  # Return a 1-row matrix with named columns
   out <- t(c(Lhat, se, df, LL, UL))
   colnames(out) <- c("Estimate", "SE", "df", "LL", "UL")
   rownames(out) <- ""

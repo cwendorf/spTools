@@ -171,7 +171,7 @@ sp.save <- function(x,
 }
 
 
-#' Add test statistic, df, and p-value to Bonett-style CI output
+#' Add test statistic, df, and p-value to CI output
 #'
 #' @param results 1-row matrix output from Bonett-style CI functions (with Estimate, SE, LL, UL)
 #' @param df Optional degrees of freedom (if NULL, try to infer from n)
@@ -237,5 +237,34 @@ sp.infer <- function(results, df = NULL, n = NULL, null_value = 0) {
 
   rownames(out) <- rownames(results)
 
+  return(out)
+}
+
+
+#' Calculate Additional Metrics for Statistical Estimates
+#'
+#' This function computes additional metrics (Width, Margin of Error, Relative Width)
+#' for a data frame of estimates with confidence intervals.
+#'
+#' @param input A data frame containing at least the columns `"Estimate"`, `"LL"`, and `"UL"`,
+#' where `"LL"` and `"UL"` represent the lower and upper bounds of a confidence interval, respectively.
+#'
+#' @return A data frame identical to `input`, with additional columns:
+#' \describe{
+#'   \item{Width}{The width of the confidence interval (`UL - LL`).}
+#'   \item{MoE}{The margin of error (`Width / 2`).}
+#'   \item{Relative}{The relative width of the interval (`Width / abs(Estimate)`). Returns `NA` if `Estimate` is zero.}
+#' }
+#'
+#' @examples
+#' df <- data.frame(Estimate = c(10, 0, 5), LL = c(8, -1, 4), UL = c(12, 1, 6))
+#' sp.metrics(df)
+#'
+#' @export
+sp.metrics <- function(input) {
+  width <- input[, "UL"] - input[, "LL"]
+  moe <- width / 2
+  relative <- ifelse(input[, "Estimate"] == 0, NA, width / abs(input[, "Estimate"]))
+  out <- cbind(input, Width = width, MoE = moe, Relative = relative)
   return(out)
 }
