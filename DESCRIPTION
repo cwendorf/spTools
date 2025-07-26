@@ -1,0 +1,15 @@
+Package: spTools
+Type: Package
+Title: Helper Functions for the statpsych Package
+Description: `spTools` is a small collection of helper functions that enhance the usability, formatting, and interpretability of statistical results produced by the `statpsych` package by Douglas Bonett.
+Version: 0.1.0
+Authors@R: person("Craig", "Wendorf", email = "cwendorf@uwsp.edu", role = c("aut", "cre"))
+License: MIT + file LICENSE
+URL: https://github.com/cwendorf/spTools
+BugReports: https://github.com/cwendorf/spTools/issues
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports: stats, utils
+VignetteBuilder: knitr
