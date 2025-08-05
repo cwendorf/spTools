@@ -68,7 +68,7 @@ sp.infer <- function(results, df = NULL, n = NULL, null_value = 0, conf_level = 
   out <- cbind(
     Estimate = est,
     SE = se,
-    Stat = stat,
+    t = stat,
     df = df,
     p = p,
     LL = ll,
