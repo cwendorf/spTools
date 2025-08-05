@@ -25,6 +25,7 @@ If you do not wish a full install, the latest functions can be made available us
 ```r
 source("http://raw.githubusercontent.com/cwendorf/spTools/main/source-spTools.R")
 ```
+
 ### Contact Me
 
 - GitHub Issues: [https://github.com/cwendorf/spTools/issues](https://github.com/cwendorf/spTools/issues) 
