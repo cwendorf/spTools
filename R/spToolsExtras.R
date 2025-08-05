@@ -1,7 +1,6 @@
 # spTools
 ## Calculations Missing from StatPsych
 
-
 #' Confidence Interval for a Linear Contrast of Means (Within-Subject)
 #'
 #' Computes a confidence interval for a linear contrast of means

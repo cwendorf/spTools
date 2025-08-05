@@ -1,14 +1,14 @@
 
 # `spTools` 
 
-## Helper Functions for the `statpsych` Package
+## Additional Functions for the `statpsych` Package
 
 [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.6.2-6666ff.svg)](https://cran.r-project.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ### Overview
 
-`spTools` is a small collection of helper functions that enhance the usability and interpretability of statistical results from the `statpsych` package by Douglas Bonett. Where `statpsych` provides high-accuracy confidence interval methods for a wide variety of statistics, `spTools` handles the pre-processing of data into the required formats and post-processing the results into more accessible and readable forms.
+`spTools` is a small collection of functions that add to the array of tools in Doug Bonett's `statpsych` package. Some functions provide calculations not present in `statpsych`, whereas other functions offer vectorized versions of `statpsych` functions. Other functions attempt to further standardize `statpsych` output. 
 
 ### Installation
 
@@ -33,4 +33,4 @@ source("http://raw.githubusercontent.com/cwendorf/spTools/main/source-spTools.R"
 
 ### Citation
 
-Wendorf, C.A. (2025). *spTools: Helper functions for the statpsych package* [R Package]. [https://github.com/cwendorf/spTools](https://github.com/cwendorf/spTools)
+Wendorf, C.A. (2025). *spTools: Additional functions for the statpsych package* [R Package]. [https://github.com/cwendorf/spTools](https://github.com/cwendorf/spTools)

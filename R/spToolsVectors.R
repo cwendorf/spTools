@@ -1,8 +1,6 @@
 # spTools
 ## Vectorized Versions
 
-
-
 #' Confidence Intervals for a Set of Means with vector input
 #'
 #' Calculates the confidence interval for a vector of sample means given
