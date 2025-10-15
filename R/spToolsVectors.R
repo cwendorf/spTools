@@ -92,7 +92,6 @@ ci.mean2.vec <- function(alpha, m, sd, n) {
   ci.mean2(alpha, m1 = m[1], m2 = m[2], sd1 = sd[1], sd2 = sd[2], n1 = n[1], n2 = n[2])
 }
 
-
 #' Wrapper for ci.stdmean2 with vector input
 #'
 #' @description
@@ -116,7 +115,6 @@ ci.stdmean2.vec <- function(alpha, m, sd, n) {
   }
   ci.stdmean2(alpha, m1 = m[1], m2 = m[2], sd1 = sd[1], sd2 = sd[2], n1 = n[1], n2 = n[2])
 }
-
 
 #' Wrapper for ci.mean.ps with vector input
 #'
@@ -148,7 +146,6 @@ ci.mean.ps.vec <- function(alpha, m, sd, cor, n) {
   }
   ci.mean.ps(alpha, m1 = m[1], m2 = m[2], sd1 = sd[1], sd2 = sd[2], cor = cor, n = n)
 }
-
 
 #' Wrapper for ci.stdmean.ps with vector input
 #'

@@ -78,7 +78,6 @@ sp.infer <- function(results, df = NULL, n = NULL, null_value = 0, conf_level = 
   return(out)
 }
 
-
 #' Clean and Reformat Tukey CI Output
 #'
 #' This function takes the output from the Tukey confidence interval function (`ci.tukey`)  

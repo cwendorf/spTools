@@ -1,5 +1,5 @@
 # spTools
-## Calculations Missing from StatPsych
+## Extra Statistical Functions
 
 #' Confidence Interval for a Linear Contrast of Means (Within-Subject)
 #'
