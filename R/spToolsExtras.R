@@ -1,5 +1,5 @@
 # spTools
-## Extra Statistical Functions
+## Extra Statistical Functions not in statpsych
 
 #' Confidence Interval for a Linear Contrast of Means (Within-Subject)
 #'

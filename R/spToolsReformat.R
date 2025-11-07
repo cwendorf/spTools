@@ -1,5 +1,5 @@
 # spTools
-## Output Functions
+## Output Functions for Enhancing statpsych
 
 #' Add test statistic, df, and p-value to CI output
 #'

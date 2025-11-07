@@ -1,5 +1,5 @@
 # spTools
-## Vectorized Versions
+## Vectorized Versions of statpsych Functions
 
 #' Confidence Intervals for a Set of Means with vector input
 #'
