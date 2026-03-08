@@ -1,4 +1,3 @@
-
 # `spTools` 
 
 ## Additional Functions for the `statpsych` Package
