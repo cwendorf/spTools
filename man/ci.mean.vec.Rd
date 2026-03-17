@@ -7,7 +7,7 @@
 ci.mean.vec(alpha, m, sd, n)
 }
 \arguments{
-\item{alpha}{Significance level (e.g., 0.05 for a 95\\% confidence interval).}
+\item{alpha}{Significance level.}
 
 \item{m}{A named numeric vector of sample means.}
 

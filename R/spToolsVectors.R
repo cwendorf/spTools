@@ -8,7 +8,7 @@
 #' standard error, degrees of freedom, and lower and upper limits of the
 #' confidence interval.
 #'
-#' @param alpha Significance level (e.g., 0.05 for a 95\% confidence interval).
+#' @param alpha Significance level.
 #' @param m A named numeric vector of sample means.
 #' @param sd A numeric vector of sample standard deviations.
 #' @param n A numeric vector of sample sizes (number of observations per group).

@@ -24,7 +24,7 @@ If a vector is provided, all elements must be equal.}
 \value{
 A 1-row matrix with named columns:
 \describe{
-\item{Estimate}{Linear contrast estimate \(\sum v_i m_i\).}
+\item{Estimate}{Linear contrast estimate.}
 \item{SE}{Standard error of the contrast estimate.}
 \item{df}{Degrees of freedom (n - 1).}
 \item{LL}{Lower limit of the confidence interval.}
