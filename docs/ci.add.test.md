@@ -28,3 +28,14 @@ ci.add.test(results, df = NULL, n = NULL, null_value = 0, conf_level = 0.95)
 
 1-row matrix with columns:
 Estimate, SE, t, df, p, LL, UL
+
+### Examples
+
+```r
+results <- matrix(
+	c(10.5, 1.2, 8.1, 12.9),
+	nrow = 1,
+	dimnames = list(NULL, c("Estimate", "SE", "LL", "UL"))
+)
+ci.add.test(results, n = 30)
+```
