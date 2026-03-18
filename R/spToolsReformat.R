@@ -7,12 +7,13 @@
 #' @param df Optional degrees of freedom (if NULL, try to infer from n)
 #' @param n Optional sample size to infer df if df is missing
 #' @param null_value Hypothesized null value for test statistic (default 0)
+#' @param conf_level Confidence level used to infer df from the CI width when df is not supplied
 #'
 #' @return 1-row matrix with columns:
 #' Estimate, SE, t, df, p, LL, UL
 #'
 #' @export
-sp.infer <- function(results, df = NULL, n = NULL, null_value = 0, conf_level = 0.95) {
+ci.add.test <- function(results, df = NULL, n = NULL, null_value = 0, conf_level = 0.95) {
   required_cols <- c("Estimate", "SE", "LL", "UL")
   if (!all(required_cols %in% colnames(results))) {
     stop("Input must contain columns: Estimate, SE, LL, UL")
@@ -80,21 +81,21 @@ sp.infer <- function(results, df = NULL, n = NULL, null_value = 0, conf_level = 
 
 #' Clean and Reformat Tukey CI Output
 #'
-#' This function takes the output from the Tukey confidence interval function (`ci.tukey`)  
-#' and reformats it by removing the `pair` columns and assigning more descriptive row names using the pair indices.  
+#' This function takes the output from the Tukey confidence interval function (`ci.tukey`)
+#' and reformats it by removing the `pair` columns and assigning more descriptive row names using the pair indices.
 #' Row names will be formatted as `"1 v 2"`, `"1 v 3"`, etc.
 #'
 #' @param ci_out A matrix or data frame produced by `ci.tukey`, where the first two columns represent pairwise comparisons.
 #'
-#' @return A cleaned matrix without the first two `pair` columns. The rows will be named according to the pairs compared,  
+#' @return A cleaned matrix without the first two `pair` columns. The rows will be named according to the pairs compared,
 #' using the format `"1 v 2"`, `"1 v 3"`, etc.
 #'
 #' @examples
 #' out <- ci.tukey(alpha = 0.05, m = c(5, 6, 7), sd = 2, n = 10)
-#' sp.tukey(out)
+#' ci.tukey.reformat(out)
 #'
 #' @export
-sp.tukey <- function(ci_out) {
+ci.tukey.reformat <- function(ci_out) {
   pairs <- ci_out[, 1:2]
   rownames(ci_out) <- apply(pairs, 1, function(x) paste0(x[1], " v ", x[2]))
   ci_out <- ci_out[, -(1:2), drop = FALSE]

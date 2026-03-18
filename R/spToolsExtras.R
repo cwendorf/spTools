@@ -106,3 +106,39 @@ ci.lc.mean.ws <- function(alpha, m, s, R, n, q) {
   rownames(out) <- ""
   return(out)
 }
+
+#' Compare Two Means with Group and Difference Confidence Intervals
+#'
+#' Returns confidence intervals for each group mean and a single comparison row
+#' for the two-group mean difference.
+#'
+#' @param alpha Numeric scalar. Significance level (e.g., 0.05 for 95% CI).
+#' @param m Numeric vector of length 2. Means for groups 1 and 2.
+#' @param sd Numeric vector of length 2. Standard deviations for groups 1 and 2.
+#' @param n Numeric vector of length 2. Sample sizes for groups 1 and 2.
+#'
+#' @return A 3-row matrix with rows for group 1, group 2, and comparison.
+#' Group rows contain output from `ci.mean.vec`. The comparison row contains
+#' selected columns from `ci.mean2.vec` corresponding to the two-group
+#' difference summary.
+#'
+#' @details
+#' The comparison row is computed from `ci.mean2.vec` using reversed group order,
+#' then reduced to columns 1, 2, 4, 6, and 7 to align with the group output.
+#'
+#' @examples
+#' ci.mean2.compare(
+#'   alpha = .05,
+#'   m = c(5.2, 6.1),
+#'   sd = c(1.1, 1.3),
+#'   n = c(30, 28)
+#' )
+#'
+#' @export
+ci.mean2.compare <- function(alpha, m, sd, n) {
+  groups <- ci.mean.vec(alpha = alpha, m = m, sd = sd, n = n)
+  compare <- ci.mean2.vec(alpha = alpha, m = rev(m), sd = rev(sd), n = rev(n))[1, c(1, 2, 4, 6, 7)]
+  results <- rbind(groups, compare)
+  rownames(results) <- c(rownames(results)[1], rownames(results)[2], "Comparison")
+  return(results)
+}

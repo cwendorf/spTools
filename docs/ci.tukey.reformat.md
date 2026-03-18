@@ -4,7 +4,7 @@
 
 **Aliases:**
 
-- `sp.tukey`
+- `ci.tukey.reformat`
 
 ### Description
 
@@ -15,7 +15,7 @@ Row names will be formatted as "1 v 2", "1 v 3", etc.
 ### Usage
 
 ```r
-sp.tukey(ci_out)
+ci.tukey.reformat(ci_out)
 ```
 
 ### Arguments
@@ -31,6 +31,5 @@ using the format "1 v 2", "1 v 3", etc.
 
 ```r
 out <- ci.tukey(alpha = 0.05, m = c(5, 6, 7), sd = 2, n = 10)
-sp.tukey(out)
+ci.tukey.reformat(out)
 ```
-
