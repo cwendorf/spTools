@@ -2,10 +2,6 @@
 
 ## Confidence Intervals for a Set of Means with vector input
 
-**Aliases:**
-
-- `ci.mean.vec`
-
 ### Description
 
 Calculates the confidence interval for a vector of sample means given
@@ -30,11 +26,11 @@ ci.mean.vec(alpha, m, sd, n)
 
 A matrix with rows corresponding to group names (from means) and columns:
 
-EstimateThe sample mean.
-SEStandard error of the mean.
-dfDegrees of freedom (n - 1).
-LLLower limit of the confidence interval.
-ULUpper limit of the confidence interval.
+- Estimate: The sample mean.
+- SE: Standard error of the mean.
+- df: Degrees of freedom (n - 1).
+- LL: Lower limit of the confidence interval.
+- UL: Upper limit of the confidence interval.
 
 ### Examples
 

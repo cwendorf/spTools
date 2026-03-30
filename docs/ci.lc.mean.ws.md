@@ -2,10 +2,6 @@
 
 ## Confidence Interval for a Linear Contrast of Means (Within-Subject)
 
-**Aliases:**
-
-- `ci.lc.mean.ws`
-
 ### Description
 
 Computes a confidence interval for a linear contrast of means
@@ -47,11 +43,11 @@ values must be equal, and the common value will be used.
 
 A 1-row matrix with named columns:
 
-EstimateLinear contrast estimate.
-SEStandard error of the contrast estimate.
-dfDegrees of freedom (n - 1).
-LLLower limit of the confidence interval.
-ULUpper limit of the confidence interval.
+- Estimate: Linear contrast estimate.
+- SE: Standard error of the contrast estimate.
+- df: Degrees of freedom (n - 1).
+- LL: Lower limit of the confidence interval.
+- UL: Upper limit of the confidence interval.
 
 ### Examples
 

@@ -2,10 +2,6 @@
 
 ## Add test statistic, df, and p-value to CI output
 
-**Aliases:**
-
-- `ci.add.test`
-
 ### Description
 
 Add test statistic, df, and p-value to CI output

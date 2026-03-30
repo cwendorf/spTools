@@ -2,10 +2,6 @@
 
 ## Wrapper for ci.stdmean.ps with vector input
 
-**Aliases:**
-
-- `ci.stdmean.ps.vec`
-
 ### Description
 
 A wrapper function for ci.stdmean.ps that accepts vectors for means and standard deviations.

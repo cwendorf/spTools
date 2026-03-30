@@ -2,10 +2,6 @@
 
 ## Clean and Reformat Tukey CI Output
 
-**Aliases:**
-
-- `ci.tukey.reformat`
-
 ### Description
 
 This function takes the output from the Tukey confidence interval function (ci.tukey)

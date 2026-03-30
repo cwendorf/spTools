@@ -2,10 +2,6 @@
 
 ## Compare Two Means with Group and Difference Confidence Intervals
 
-**Aliases:**
-
-- `ci.mean2.compare`
-
 ### Description
 
 Returns confidence intervals for each group mean and a single comparison row

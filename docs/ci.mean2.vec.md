@@ -2,10 +2,6 @@
 
 ## Wrapper for ci.mean2 with vector input
 
-**Aliases:**
-
-- `ci.mean2.vec`
-
 ### Description
 
 A wrapper function for ci.mean2 that accepts vectors for means, standard deviations, and sample sizes.

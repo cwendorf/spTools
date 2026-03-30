@@ -25,6 +25,12 @@ If you do not wish a full install, the latest functions can be made available us
 source("http://raw.githubusercontent.com/cwendorf/spTools/main/source-spTools.R")
 ```
 
+### Usage
+
+This package includes the following documentation:
+
+- [Reference](./docs/README.md): Documentation for all exported functions, including usage, arguments, return values, and examples.
+
 ### Contact
 
 - GitHub Issues: [https://github.com/cwendorf/spTools/issues](https://github.com/cwendorf/spTools/issues) 
