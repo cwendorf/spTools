@@ -1,6 +1,6 @@
 # [`spTools`](https://github.com/cwendorf/spTools/)
 
-## Wrapper for ci.mean2 with vector input
+## Confidence Interval for Independent Groups Mean Difference
 
 ### Description
 

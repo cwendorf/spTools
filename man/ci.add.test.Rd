@@ -2,7 +2,7 @@
 % Please edit documentation in R/spToolsReformat.R
 \name{ci.add.test}
 \alias{ci.add.test}
-\title{Add test statistic, df, and p-value to CI output}
+\title{Add Test Statistics to Output}
 \usage{
 ci.add.test(results, df = NULL, n = NULL, null_value = 0, conf_level = 0.95)
 }

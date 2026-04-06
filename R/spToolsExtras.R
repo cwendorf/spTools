@@ -1,7 +1,7 @@
 # spTools
 ## Extra Statistical Functions not in statpsych
 
-#' Confidence Interval for a Linear Contrast of Means (Within-Subject)
+#' Confidence Interval for a Within-Subjects Linear Contrast of Means
 #'
 #' Computes a confidence interval for a linear contrast of means
 #' from within-subject (repeated measures) data, accounting for the variance-covariance
@@ -107,7 +107,7 @@ ci.lc.mean.ws <- function(alpha, m, s, R, n, q) {
   return(out)
 }
 
-#' Compare Two Means with Group and Difference Confidence Intervals
+#' Confidence Intervals to Compare Two Independent Means and Their Difference
 #'
 #' Returns confidence intervals for each group mean and a single comparison row
 #' for the two-group mean difference.

@@ -2,7 +2,7 @@
 % Please edit documentation in R/spToolsVectors.R
 \name{ci.mean2.vec}
 \alias{ci.mean2.vec}
-\title{Wrapper for ci.mean2 with vector input}
+\title{Confidence Interval for Independent Groups Mean Difference}
 \usage{
 ci.mean2.vec(alpha, m, sd, n)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/spToolsReformat.R
 \name{ci.tukey.reformat}
 \alias{ci.tukey.reformat}
-\title{Clean and Reformat Tukey CI Output}
+\title{Clean and Reformat Tukey Confidence Interval Output}
 \usage{
 ci.tukey.reformat(ci_out)
 }

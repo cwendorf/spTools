@@ -1,6 +1,6 @@
 # [`spTools`](https://github.com/cwendorf/spTools/)
 
-## Add test statistic, df, and p-value to CI output
+## Add Test Statistics to Output
 
 ### Description
 

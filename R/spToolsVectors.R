@@ -1,7 +1,7 @@
 # spTools
 ## Vectorized Versions of statpsych Functions
 
-#' Confidence Intervals for a Set of Means with vector input
+#' Confidence Intervals for a Set of Means
 #'
 #' Calculates the confidence interval for a vector of sample means given
 #' standard deviations and sample sizes. Returns a matrix with the estimate,
@@ -68,7 +68,7 @@ ci.mean.vec <- function(alpha, m, sd, n) {
   return(result)
 }
 
-#' Wrapper for ci.mean2 with vector input
+#' Confidence Interval for Independent Groups Mean Difference
 #'
 #' @description
 #' A wrapper function for ci.mean2 that accepts vectors for means, standard deviations, and sample sizes.
@@ -92,7 +92,7 @@ ci.mean2.vec <- function(alpha, m, sd, n) {
   ci.mean2(alpha, m1 = m[1], m2 = m[2], sd1 = sd[1], sd2 = sd[2], n1 = n[1], n2 = n[2])
 }
 
-#' Wrapper for ci.stdmean2 with vector input
+#' Confidence Interval for a Independent Groups Standardized Mean Difference
 #'
 #' @description
 #' A wrapper function for ci.stdmean2 that accepts vectors for means, standard deviations, and sample sizes.
@@ -116,7 +116,7 @@ ci.stdmean2.vec <- function(alpha, m, sd, n) {
   ci.stdmean2(alpha, m1 = m[1], m2 = m[2], sd1 = sd[1], sd2 = sd[2], n1 = n[1], n2 = n[2])
 }
 
-#' Wrapper for ci.mean.ps with vector input
+#' Confidence Interval for Paired Samples Mean Difference
 #'
 #' @description
 #' A wrapper function for ci.mean.ps that accepts vectors for means and standard deviations.
@@ -147,7 +147,7 @@ ci.mean.ps.vec <- function(alpha, m, sd, cor, n) {
   ci.mean.ps(alpha, m1 = m[1], m2 = m[2], sd1 = sd[1], sd2 = sd[2], cor = cor, n = n)
 }
 
-#' Wrapper for ci.stdmean.ps with vector input
+#' Confidence Interval for a Paired Samples Standardized Mean Difference
 #'
 #' @description
 #' A wrapper function for ci.stdmean.ps that accepts vectors for means and standard deviations.

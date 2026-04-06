@@ -2,7 +2,7 @@
 % Please edit documentation in R/spToolsExtras.R
 \name{ci.mean2.compare}
 \alias{ci.mean2.compare}
-\title{Compare Two Means with Group and Difference Confidence Intervals}
+\title{Confidence Intervals to Compare Two Independent Means and Their Difference}
 \usage{
 ci.mean2.compare(alpha, m, sd, n)
 }

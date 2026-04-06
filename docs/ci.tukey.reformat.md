@@ -1,6 +1,6 @@
 # [`spTools`](https://github.com/cwendorf/spTools/)
 
-## Clean and Reformat Tukey CI Output
+## Clean and Reformat Tukey Confidence Interval Output
 
 ### Description
 

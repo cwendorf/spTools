@@ -2,7 +2,7 @@
 % Please edit documentation in R/spToolsVectors.R
 \name{ci.mean.ps.vec}
 \alias{ci.mean.ps.vec}
-\title{Wrapper for ci.mean.ps with vector input}
+\title{Confidence Interval for Paired Samples Mean Difference}
 \usage{
 ci.mean.ps.vec(alpha, m, sd, cor, n)
 }

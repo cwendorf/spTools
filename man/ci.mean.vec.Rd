@@ -2,7 +2,7 @@
 % Please edit documentation in R/spToolsVectors.R
 \name{ci.mean.vec}
 \alias{ci.mean.vec}
-\title{Confidence Intervals for a Set of Means with vector input}
+\title{Confidence Intervals for a Set of Means}
 \usage{
 ci.mean.vec(alpha, m, sd, n)
 }

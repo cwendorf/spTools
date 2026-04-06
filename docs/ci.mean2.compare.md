@@ -1,6 +1,6 @@
 # [`spTools`](https://github.com/cwendorf/spTools/)
 
-## Compare Two Means with Group and Difference Confidence Intervals
+## Confidence Intervals to Compare Two Independent Means and Their Difference
 
 ### Description
 

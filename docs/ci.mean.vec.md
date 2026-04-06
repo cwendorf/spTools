@@ -1,6 +1,6 @@
 # [`spTools`](https://github.com/cwendorf/spTools/)
 
-## Confidence Intervals for a Set of Means with vector input
+## Confidence Intervals for a Set of Means
 
 ### Description
 

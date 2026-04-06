@@ -1,6 +1,6 @@
 # [`spTools`](https://github.com/cwendorf/spTools/)
 
-## Confidence Interval for a Linear Contrast of Means (Within-Subject)
+## Confidence Interval for a Within-Subjects Linear Contrast of Means
 
 ### Description
 

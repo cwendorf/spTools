@@ -1,6 +1,6 @@
 # [`spTools`](https://github.com/cwendorf/spTools/)
 
-## Wrapper for ci.stdmean.ps with vector input
+## Confidence Interval for a Paired Samples Standardized Mean Difference
 
 ### Description
 

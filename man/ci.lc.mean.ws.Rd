@@ -2,7 +2,7 @@
 % Please edit documentation in R/spToolsExtras.R
 \name{ci.lc.mean.ws}
 \alias{ci.lc.mean.ws}
-\title{Confidence Interval for a Linear Contrast of Means (Within-Subject)}
+\title{Confidence Interval for a Within-Subjects Linear Contrast of Means}
 \usage{
 ci.lc.mean.ws(alpha, m, s, R, n, q)
 }

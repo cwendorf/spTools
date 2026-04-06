@@ -1,7 +1,7 @@
 # spTools
 ## Output Functions for Enhancing statpsych
 
-#' Add test statistic, df, and p-value to CI output
+#' Add Test Statistics to Output
 #'
 #' @param results 1-row matrix output from Bonett CI functions (with Estimate, SE, LL, UL)
 #' @param df Optional degrees of freedom (if NULL, try to infer from n)
@@ -87,7 +87,7 @@ ci.add.test <- function(results, df = NULL, n = NULL, null_value = 0, conf_level
   return(out)
 }
 
-#' Clean and Reformat Tukey CI Output
+#' Clean and Reformat Tukey Confidence Interval Output
 #'
 #' This function takes the output from the Tukey confidence interval function (`ci.tukey`)
 #' and reformats it by removing the `pair` columns and assigning more descriptive row names using the pair indices.

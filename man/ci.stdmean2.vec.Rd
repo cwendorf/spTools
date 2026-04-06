@@ -2,7 +2,7 @@
 % Please edit documentation in R/spToolsVectors.R
 \name{ci.stdmean2.vec}
 \alias{ci.stdmean2.vec}
-\title{Wrapper for ci.stdmean2 with vector input}
+\title{Confidence Interval for a Independent Groups Standardized Mean Difference}
 \usage{
 ci.stdmean2.vec(alpha, m, sd, n)
 }
