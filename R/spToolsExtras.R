@@ -184,3 +184,229 @@ ci.mean.ps.compare <- function(alpha, m, sd, cor, n) {
   rownames(results) <- c("Measure 1", "Measure 2", "Comparison")
   return(results)
 }
+
+#' Confidence Intervals to Compare Two Correlations and Their Difference
+#'
+#' Returns confidence intervals for each group correlation and a single
+#' comparison row for the two-group correlation difference.
+#'
+#' @param alpha Numeric scalar. Significance level (e.g., 0.05 for 95% CI).
+#' @param cor Numeric vector of length 2. Correlations for groups 1 and 2.
+#' @param s Numeric scalar or numeric vector of length 2. Number of control
+#' variables (set to 0 for Pearson correlations).
+#' @param n Numeric vector of length 2. Sample sizes for groups 1 and 2.
+#'
+#' @return A 3-row matrix with rows for group 1, group 2, and comparison.
+#' Group rows contain output from `ci.cor.vec`. The comparison row contains
+#' output from the two-group correlation-difference confidence interval.
+#'
+#' @details
+#' If `s` is supplied as a scalar, it is used for both groups. If `s` is
+#' supplied as a vector, both values must be equal because the two-group
+#' difference method requires a common control-variable count.
+#'
+#' @examples
+#' ci.cor.compare(
+#'   alpha = .05,
+#'   cor = c(.64, .31),
+#'   s = 0,
+#'   n = c(200, 200)
+#' )
+#'
+#' @export
+ci.cor.compare <- function(alpha, cor, s, n) {
+  if (length(cor) != 2 || length(n) != 2) {
+    stop("Arguments 'cor' and 'n' must be numeric vectors of length 2.")
+  }
+
+  if (length(s) == 1) {
+    s <- rep(s, 2)
+  }
+  if (length(s) != 2) {
+    stop("Argument 's' must be a scalar or a numeric vector of length 2.")
+  }
+  if (s[1] != s[2]) {
+    stop("Values in 's' must be equal for a two-group correlation difference.")
+  }
+
+  groups <- ci.cor.vec(alpha = alpha, cor = cor, s = s, n = n)
+
+  ci_cor2 <- getExportedValue("statpsych", "ci.cor2")
+  compare <- ci_cor2(
+    alpha = alpha,
+    cor1 = cor[1], cor2 = cor[2],
+    n1 = n[1], n2 = n[2],
+    s = s[1]
+  )
+
+  compare <- compare[1, c("Estimate", "SE", "LL", "UL")]
+  results <- rbind(groups, compare)
+  rownames(results) <- c("Group 1", "Group 2", "Comparison")
+  return(results)
+}
+
+#' Confidence Intervals to Compare Two Proportions
+#'
+#' Returns confidence intervals for each group proportion and comparison rows
+#' for the proportion difference, the proportion ratio, or both.
+#'
+#' @param alpha Numeric scalar. Significance level (e.g., 0.05 for 95% CI).
+#' @param f Numeric vector of length 2. Frequencies for groups 1 and 2.
+#' @param n Numeric vector of length 2. Sample sizes for groups 1 and 2.
+#' @param type Character scalar indicating comparison rows to include:
+#' `"difference"`, `"ratio"`, or `"both"`.
+#'
+#' @return A matrix with rows for group 1, group 2, and one or two comparison
+#' rows depending on `type`. Columns are `Estimate`, `SE`, `LL`, and `UL`.
+#'
+#' @details
+#' The difference row is obtained from `ci.prop2.vec`. The ratio row is
+#' obtained from `statpsych::ci.ratio.prop2`. Because `ci.ratio.prop2` does
+#' not return a standard error column, `SE` is set to `NA` for the ratio row.
+#'
+#' @examples
+#' ci.prop.compare(
+#'   alpha = .05,
+#'   f = c(57, 15),
+#'   n = c(100, 100),
+#'   type = "both"
+#' )
+#'
+#' @export
+ci.prop.compare <- function(alpha, f, n, type = c("difference", "ratio", "both")) {
+  type <- match.arg(type)
+
+  if (length(f) != 2 || length(n) != 2) {
+    stop("Arguments 'f' and 'n' must be numeric vectors of length 2.")
+  }
+
+  groups <- ci.prop.vec(alpha = alpha, f = f, n = n)
+  rownames(groups) <- c("Group 1", "Group 2")
+
+  rows <- list(groups)
+  row_names <- rownames(groups)
+
+  if (type %in% c("difference", "both")) {
+    diff_row <- ci.prop2.vec(alpha = alpha, f = f, n = n)[1, c("Estimate", "SE", "LL", "UL")]
+    rows[[length(rows) + 1]] <- diff_row
+    row_names <- c(row_names, "Difference")
+  }
+
+  if (type %in% c("ratio", "both")) {
+    ci_ratio_prop2 <- getExportedValue("statpsych", "ci.ratio.prop2")
+    ratio_out <- ci_ratio_prop2(alpha = alpha, f1 = f[1], f2 = f[2], n1 = n[1], n2 = n[2])
+    ratio_row <- c(
+      Estimate = as.numeric(ratio_out[1, 3]),
+      SE = NA_real_,
+      LL = as.numeric(ratio_out[1, 4]),
+      UL = as.numeric(ratio_out[1, 5])
+    )
+    rows[[length(rows) + 1]] <- ratio_row
+    row_names <- c(row_names, "Ratio")
+  }
+
+  results <- do.call(rbind, rows)
+  rownames(results) <- row_names
+  return(results)
+}
+
+#' Confidence Intervals for 2x2 Within-Subjects Proportion Effects
+#'
+#' Computes confidence intervals and tests for the AB interaction effect,
+#' main effect of A, main effect of B, simple main effects of A, and
+#' simple main effects of B in a 2x2 within-subjects design with
+#' dichotomous (0/1) responses.
+#'
+#' @param alpha Alpha level for 1 - alpha confidence intervals.
+#' @param y11 Binary vector of responses at level 1 of A and level 1 of B.
+#' @param y12 Binary vector of responses at level 1 of A and level 2 of B.
+#' @param y21 Binary vector of responses at level 2 of A and level 1 of B.
+#' @param y22 Binary vector of responses at level 2 of A and level 2 of B.
+#'
+#' @return A 7-row matrix (one row per effect) with columns:
+#' \\itemize{
+#'   \\item Estimate
+#'   \\item SE
+#'   \\item z
+#'   \\item p
+#'   \\item LL
+#'   \\item UL
+#' }
+#'
+#' @examples
+#' y11 <- c(1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1)
+#' y12 <- c(1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1)
+#' y21 <- c(1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0)
+#' y22 <- c(0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0)
+#' ci.2x2.prop.ws(.05, y11, y12, y21, y22)
+#'
+#' @export
+ci.2x2.prop.ws <- function(alpha, y11, y12, y21, y22) {
+  if (length(y11) != length(y12) ||
+      length(y11) != length(y21) ||
+      length(y11) != length(y22)) {
+    stop("all score vectors must have same length")
+  }
+
+  y <- cbind(y11, y12, y21, y22)
+
+  if (any(is.na(y))) {
+    stop("missing values are not allowed; remove or impute before calling")
+  }
+
+  valid <- y %in% c(0, 1)
+  if (!all(valid)) {
+    stop("all inputs must be binary values coded as 0 or 1")
+  }
+
+  n <- nrow(y)
+  if (n < 2) {
+    stop("at least two paired observations are required")
+  }
+
+  zcrit <- stats::qnorm(1 - alpha / 2)
+
+  q1 <- c(1, -1, -1, 1)
+  q2 <- c(.5, .5, -.5, -.5)
+  q3 <- c(.5, -.5, .5, -.5)
+  q4 <- c(1, 0, -1, 0)
+  q5 <- c(0, 1, 0, -1)
+  q6 <- c(1, -1, 0, 0)
+  q7 <- c(0, 0, 1, -1)
+
+  p_hat <- colMeans(y)
+  sigma_hat <- stats::cov(y) / n
+
+  one_effect <- function(q) {
+    est <- as.numeric(sum(q * p_hat))
+    se <- sqrt(as.numeric(t(q) %*% sigma_hat %*% q))
+
+    if (se == 0) {
+      z <- NA_real_
+      p <- NA_real_
+    } else {
+      z <- est / se
+      p <- 2 * (1 - stats::pnorm(abs(z)))
+    }
+
+    ll <- est - zcrit * se
+    ul <- est + zcrit * se
+
+    c(est, se, z, p, ll, ul)
+  }
+
+  out <- rbind(
+    one_effect(q1),
+    one_effect(q2),
+    one_effect(q3),
+    one_effect(q4),
+    one_effect(q5),
+    one_effect(q6),
+    one_effect(q7)
+  )
+
+  rownames(out) <- c("AB:", "A:", "B:", "A at b1:", "A at b2:", "B at a1:", "B at a2:")
+  colnames(out) <- c("Estimate", "SE", "z", "p", "LL", "UL")
+
+  out
+}

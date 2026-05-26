@@ -173,3 +173,188 @@ ci.stdmean.ps.vec <- function(alpha, m, sd, cor, n) {
   }
   ci.stdmean.ps(alpha, m1 = m[1], m2 = m[2], sd1 = sd[1], sd2 = sd[2], cor = cor, n = n)
 }
+
+#' Confidence Intervals for a Set of Pearson (or Partial) Correlations
+#'
+#' A wrapper function for `ci.cor` that accepts vectors of correlations,
+#' control-variable counts, and sample sizes.
+#'
+#' @param alpha Alpha level for 1-alpha confidence.
+#' @param cor Numeric vector of estimated Pearson or partial correlations.
+#' @param s Numeric vector of control-variable counts (set 0 for Pearson).
+#' @param n Numeric vector of sample sizes.
+#'
+#' @return
+#' A matrix with one row per element of `cor` and columns from `ci.cor`:
+#' `Estimate`, `SE`, `LL`, and `UL`.
+#'
+#' @examples
+#' ci.cor.vec(
+#'   alpha = .05,
+#'   cor = c(.60, .70),
+#'   s = c(0, 1),
+#'   n = c(150, 135)
+#' )
+#'
+#' @export
+ci.cor.vec <- function(alpha, cor, s, n) {
+  if (!(length(cor) == length(s) && length(s) == length(n))) {
+    stop("Arguments 'cor', 's', and 'n' must have the same length.")
+  }
+
+  ci_cor <- getExportedValue("statpsych", "ci.cor")
+
+  out <- do.call(
+    rbind,
+    lapply(seq_along(cor), function(i) {
+      ci_cor(alpha = alpha, cor = cor[i], s = s[i], n = n[i])
+    })
+  )
+
+  rownames(out) <- names(cor)
+  if (is.null(rownames(out))) {
+    rownames(out) <- paste0("Group_", seq_along(cor))
+  }
+
+  return(out)
+}
+
+#' Confidence Interval for Independent Groups Pearson Correlation Difference
+#'
+#' A wrapper function for `ci.cor2` that accepts vectors for group
+#' correlations and sample sizes.
+#'
+#' @param alpha Alpha level for 1-alpha confidence.
+#' @param cor Numeric vector of length 2: correlations for groups 1 and 2.
+#' @param n Numeric vector of length 2: sample sizes for groups 1 and 2.
+#'
+#' @return
+#' A 1-row matrix identical to the output of `ci.cor2`.
+#'
+#' @examples
+#' ci.cor2.vec(.05, cor = c(.64, .31), n = c(200, 200))
+#'
+#' @export
+ci.cor2.vec <- function(alpha, cor, n) {
+  if (length(cor) != 2 || length(n) != 2) {
+    stop("Arguments 'cor' and 'n' must be numeric vectors of length 2.")
+  }
+
+  ci_cor2 <- getExportedValue("statpsych", "ci.cor2")
+
+  ci_cor2(alpha = alpha, cor1 = cor[1], cor2 = cor[2], n1 = n[1], n2 = n[2])
+}
+
+#' Confidence Intervals for a Set of Spearman Correlations
+#'
+#' A wrapper function for `ci.spear` that accepts lists of paired vectors.
+#'
+#' @param alpha Alpha level for 1-alpha confidence.
+#' @param y List of numeric vectors for y scores.
+#' @param x List of numeric vectors for x scores (paired with `y`).
+#'
+#' @return
+#' A matrix with one row per y/x pair and columns from `ci.spear`:
+#' `Estimate`, `SE`, `LL`, and `UL`.
+#'
+#' @examples
+#' y_list <- list(
+#'   c(21, 4, 9, 12, 35, 18, 10, 22, 24, 1, 6, 8, 13, 16, 19),
+#'   c(5, 7, 9, 10, 13, 15, 18, 20, 22, 25)
+#' )
+#' x_list <- list(
+#'   c(67, 28, 30, 28, 52, 40, 25, 37, 44, 10, 14, 20, 28, 40, 51),
+#'   c(3, 5, 8, 8, 11, 12, 16, 18, 19, 23)
+#' )
+#' ci.spear.vec(.05, y = y_list, x = x_list)
+#'
+#' @export
+ci.spear.vec <- function(alpha, y, x) {
+  if (!is.list(y) || !is.list(x)) {
+    stop("Arguments 'y' and 'x' must be lists of numeric vectors.")
+  }
+  if (length(y) != length(x)) {
+    stop("Arguments 'y' and 'x' must have the same length.")
+  }
+
+  ci_spear <- getExportedValue("statpsych", "ci.spear")
+
+  out <- do.call(
+    rbind,
+    lapply(seq_along(y), function(i) {
+      ci_spear(alpha = alpha, y = y[[i]], x = x[[i]])
+    })
+  )
+
+  rownames(out) <- names(y)
+  if (is.null(rownames(out))) {
+    rownames(out) <- paste0("Group_", seq_along(y))
+  }
+
+  return(out)
+}
+
+#' Confidence Intervals for a Set of One-Sample Proportions
+#'
+#' A wrapper function for `ci.prop` that accepts vectors of frequencies
+#' and sample sizes.
+#'
+#' @param alpha Alpha level for 1-alpha confidence.
+#' @param f Numeric vector of frequencies.
+#' @param n Numeric vector of sample sizes.
+#'
+#' @return
+#' A matrix with one row per element of `f` and columns from `ci.prop`:
+#' `Estimate`, `SE`, `LL`, and `UL`.
+#'
+#' @examples
+#' ci.prop.vec(.05, f = c(120, 95), n = c(300, 250))
+#'
+#' @export
+ci.prop.vec <- function(alpha, f, n) {
+  if (length(f) != length(n)) {
+    stop("Arguments 'f' and 'n' must have the same length.")
+  }
+
+  ci_prop <- getExportedValue("statpsych", "ci.prop")
+
+  out <- do.call(
+    rbind,
+    lapply(seq_along(f), function(i) {
+      ci_prop(alpha = alpha, f = f[i], n = n[i])
+    })
+  )
+
+  rownames(out) <- names(f)
+  if (is.null(rownames(out))) {
+    rownames(out) <- paste0("Group_", seq_along(f))
+  }
+
+  return(out)
+}
+
+#' Confidence Interval for Independent Groups Proportion Difference
+#'
+#' A wrapper function for `ci.prop2` that accepts vectors for frequencies
+#' and sample sizes in two groups.
+#'
+#' @param alpha Alpha level for 1-alpha confidence.
+#' @param f Numeric vector of length 2: frequencies for groups 1 and 2.
+#' @param n Numeric vector of length 2: sample sizes for groups 1 and 2.
+#'
+#' @return
+#' A 1-row matrix identical to the output of `ci.prop2`.
+#'
+#' @examples
+#' ci.prop2.vec(.05, f = c(57, 15), n = c(100, 100))
+#'
+#' @export
+ci.prop2.vec <- function(alpha, f, n) {
+  if (length(f) != 2 || length(n) != 2) {
+    stop("Arguments 'f' and 'n' must be numeric vectors of length 2.")
+  }
+
+  ci_prop2 <- getExportedValue("statpsych", "ci.prop2")
+
+  ci_prop2(alpha = alpha, f1 = f[1], f2 = f[2], n1 = n[1], n2 = n[2])
+}
