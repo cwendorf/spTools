@@ -26,7 +26,9 @@ The functions provide additional analyses or additional formatting not present i
 - [ci.mean2.compare](./ci.mean2.compare.md): Confidence Intervals to Compare Two Independent Means and Their Difference.
 - [ci.mean.ps.compare](./ci.mean.ps.compare.md): Confidence Intervals to Compare Two Paired Means and Their Difference.
 - [ci.cor.compare](./ci.cor.compare.md): Confidence Intervals to Compare Two Correlations and Their Difference.
+- [ci.cor.dep.compare](./ci.cor.dep.compare.md): Confidence Intervals to Compare Two Dependent Correlations and Their Difference.
 - [ci.prop.compare](./ci.prop.compare.md): Confidence Intervals to Compare Two Proportions.
+- [ci.prop.ps.compare](./ci.prop.ps.compare.md): Confidence Intervals to Compare Two Paired Proportions and Their Difference.
 - [ci.lc.mean.ws](./ci.lc.mean.ws.md): Confidence Interval for a Within-Subjects Linear Contrast of Means.
 - [ci.2x2.prop.ws](./ci.2x2.prop.ws.md): Confidence Intervals for 2x2 Within-Subjects Proportion Effects.
 - [ci.add.test](./ci.add.test.md): Add Test Statistics to Output.
