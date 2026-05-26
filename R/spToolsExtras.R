@@ -142,3 +142,45 @@ ci.mean2.compare <- function(alpha, m, sd, n) {
   rownames(results) <- c(rownames(results)[1], rownames(results)[2], "Comparison")
   return(results)
 }
+
+#' Confidence Intervals to Compare Two Paired Means and Their Difference
+#'
+#' Returns confidence intervals for each paired measurement mean and a single
+#' comparison row for the paired mean difference.
+#'
+#' @param alpha Numeric scalar. Significance level (e.g., 0.05 for 95% CI).
+#' @param m Numeric vector of length 2. Means for measurements 1 and 2.
+#' @param sd Numeric vector of length 2. Standard deviations for measurements 1 and 2.
+#' @param cor Numeric scalar. Estimated correlation between paired measurements.
+#' @param n Numeric scalar or numeric vector of length 2. Paired sample size.
+#'
+#' @return A 3-row matrix with rows for measurement 1, measurement 2, and comparison.
+#' Measurement rows contain output from `ci.mean.vec`. The comparison row contains
+#' selected columns from `ci.mean.ps.vec` corresponding to the paired-difference
+#' summary.
+#'
+#' @details
+#' If `n` is supplied as a scalar, it is expanded to length 2 for the
+#' measurement rows.
+#'
+#' @examples
+#' ci.mean.ps.compare(
+#'   alpha = .05,
+#'   m = c(58.2, 51.4),
+#'   sd = c(7.43, 8.92),
+#'   cor = .537,
+#'   n = 30
+#' )
+#'
+#' @export
+ci.mean.ps.compare <- function(alpha, m, sd, cor, n) {
+  n_groups <- n
+  if (length(n_groups) == 1) {
+    n_groups <- rep(n_groups, 2)
+  }
+  groups <- ci.mean.vec(alpha = alpha, m = m, sd = sd, n = n_groups)
+  compare <- ci.mean.ps.vec(alpha = alpha, m = m, sd = sd, cor = cor, n = n_groups[1])[1, c(1, 2, 4, 6, 7)]
+  results <- rbind(groups, compare)
+  rownames(results) <- c("Measure 1", "Measure 2", "Comparison")
+  return(results)
+}
