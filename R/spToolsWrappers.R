@@ -125,12 +125,10 @@ ci.cor.compare <- function(alpha, cor, s, n) {
 
   groups <- ci.cor.vec(alpha = alpha, cor = cor, s = s, n = n)
 
-  ci_cor2 <- getExportedValue("statpsych", "ci.cor2")
-  compare <- ci_cor2(
+  compare <- ci.cor2(
     alpha = alpha,
     cor1 = cor[1], cor2 = cor[2],
-    n1 = n[1], n2 = n[2],
-    s = s[1]
+    n1 = n[1], n2 = n[2]
   )
 
   compare <- compare[1, c("Estimate", "SE", "LL", "UL")]
@@ -183,8 +181,7 @@ ci.cor.dep.compare <- function(alpha, cor, cor12, n, s = 0) {
 
   groups <- ci.cor.vec(alpha = alpha, cor = cor, s = c(s, s), n = n)
 
-  ci_cor_dep <- getExportedValue("statpsych", "ci.cor.dep")
-  compare <- ci_cor_dep(alpha = alpha, cor1 = cor[1], cor2 = cor[2], cor12 = cor12, n = n[1])
+  compare <- ci.cor.dep(alpha = alpha, cor1 = cor[1], cor2 = cor[2], cor12 = cor12, n = n[1])
   compare <- compare[1, c("Estimate", "SE", "LL", "UL")]
 
   results <- rbind(groups, compare)
@@ -240,13 +237,12 @@ ci.prop.compare <- function(alpha, f, n, type = c("difference", "ratio", "both")
   }
 
   if (type %in% c("ratio", "both")) {
-    ci_ratio_prop2 <- getExportedValue("statpsych", "ci.ratio.prop2")
-    ratio_out <- ci_ratio_prop2(alpha = alpha, f1 = f[1], f2 = f[2], n1 = n[1], n2 = n[2])
+    ratio_out <- ci.ratio.prop2(alpha = alpha, f1 = f[1], f2 = f[2], n1 = n[1], n2 = n[2])
     ratio_row <- c(
-      Estimate = as.numeric(ratio_out[1, 3]),
+      Estimate = as.numeric(ratio_out[1, 1]),
       SE = NA_real_,
-      LL = as.numeric(ratio_out[1, 4]),
-      UL = as.numeric(ratio_out[1, 5])
+      LL = as.numeric(ratio_out[1, 2]),
+      UL = as.numeric(ratio_out[1, 3])
     )
     rows[[length(rows) + 1]] <- ratio_row
     row_names <- c(row_names, "Ratio")
@@ -295,8 +291,7 @@ ci.prop.ps.compare <- function(alpha, f00, f01, f10, f11) {
 
   groups <- ci.prop.vec(alpha = alpha, f = c(f1, f2), n = c(n, n))
 
-  ci_prop_ps <- getExportedValue("statpsych", "ci.prop.ps")
-  compare <- ci_prop_ps(alpha = alpha, f00 = f00, f01 = f01, f10 = f10, f11 = f11)
+  compare <- ci.prop.ps(alpha = alpha, f00 = f00, f01 = f01, f10 = f10, f11 = f11)
   compare <- compare[1, c("Estimate", "SE", "LL", "UL")]
 
   results <- rbind(groups, compare)
@@ -335,11 +330,9 @@ ci.prop.ps.compare <- function(alpha, f00, f01, f10, f11) {
 #'
 #' @export
 ci.lc.mean.bs.complex <- function(alpha, m, sd, n, q1, q2, labels = NULL) {
-  ci_lc_mean_bs <- getExportedValue("statpsych", "ci.lc.mean.bs")
-
-  r1 <- ci_lc_mean_bs(alpha = alpha, m = m, sd = sd, n = n, v = q1)[1, c("Estimate", "SE", "df", "LL", "UL")]
-  r2 <- ci_lc_mean_bs(alpha = alpha, m = m, sd = sd, n = n, v = q2)[1, c("Estimate", "SE", "df", "LL", "UL")]
-  rd <- ci_lc_mean_bs(alpha = alpha, m = m, sd = sd, n = n, v = q2 - q1)[1, c("Estimate", "SE", "df", "LL", "UL")]
+  r1 <- ci.lc.mean.bs(alpha = alpha, m = m, sd = sd, n = n, v = q1)[1, c("Estimate", "SE", "df", "LL", "UL")]
+  r2 <- ci.lc.mean.bs(alpha = alpha, m = m, sd = sd, n = n, v = q2)[1, c("Estimate", "SE", "df", "LL", "UL")]
+  rd <- ci.lc.mean.bs(alpha = alpha, m = m, sd = sd, n = n, v = q2 - q1)[1, c("Estimate", "SE", "df", "LL", "UL")]
 
   results <- rbind(r1, r2, rd)
   if (is.null(labels)) {

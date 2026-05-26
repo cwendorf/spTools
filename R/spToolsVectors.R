@@ -202,12 +202,10 @@ ci.cor.vec <- function(alpha, cor, s, n) {
     stop("Arguments 'cor', 's', and 'n' must have the same length.")
   }
 
-  ci_cor <- getExportedValue("statpsych", "ci.cor")
-
   out <- do.call(
     rbind,
     lapply(seq_along(cor), function(i) {
-      ci_cor(alpha = alpha, cor = cor[i], s = s[i], n = n[i])
+      ci.cor(alpha = alpha, cor = cor[i], s = s[i], n = n[i])
     })
   )
 
@@ -239,10 +237,7 @@ ci.cor2.vec <- function(alpha, cor, n) {
   if (length(cor) != 2 || length(n) != 2) {
     stop("Arguments 'cor' and 'n' must be numeric vectors of length 2.")
   }
-
-  ci_cor2 <- getExportedValue("statpsych", "ci.cor2")
-
-  ci_cor2(alpha = alpha, cor1 = cor[1], cor2 = cor[2], n1 = n[1], n2 = n[2])
+  ci.cor2(alpha = alpha, cor1 = cor[1], cor2 = cor[2], n1 = n[1], n2 = n[2])
 }
 
 #' Confidence Intervals for a Set of Spearman Correlations
@@ -277,12 +272,10 @@ ci.spear.vec <- function(alpha, y, x) {
     stop("Arguments 'y' and 'x' must have the same length.")
   }
 
-  ci_spear <- getExportedValue("statpsych", "ci.spear")
-
   out <- do.call(
     rbind,
     lapply(seq_along(y), function(i) {
-      ci_spear(alpha = alpha, y = y[[i]], x = x[[i]])
+      ci.spear(alpha = alpha, y = y[[i]], x = x[[i]])
     })
   )
 
@@ -315,13 +308,10 @@ ci.prop.vec <- function(alpha, f, n) {
   if (length(f) != length(n)) {
     stop("Arguments 'f' and 'n' must have the same length.")
   }
-
-  ci_prop <- getExportedValue("statpsych", "ci.prop")
-
   out <- do.call(
     rbind,
     lapply(seq_along(f), function(i) {
-      ci_prop(alpha = alpha, f = f[i], n = n[i])
+      ci.prop(alpha = alpha, f = f[i], n = n[i])[1, ]
     })
   )
 
@@ -353,8 +343,5 @@ ci.prop2.vec <- function(alpha, f, n) {
   if (length(f) != 2 || length(n) != 2) {
     stop("Arguments 'f' and 'n' must be numeric vectors of length 2.")
   }
-
-  ci_prop2 <- getExportedValue("statpsych", "ci.prop2")
-
-  ci_prop2(alpha = alpha, f1 = f[1], f2 = f[2], n1 = n[1], n2 = n[2])
+  ci.prop2(alpha = alpha, f1 = f[1], f2 = f[2], n1 = n[1], n2 = n[2])
 }
