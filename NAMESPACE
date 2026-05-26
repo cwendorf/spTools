@@ -2,6 +2,8 @@
 
 export(ci.2x2.prop.ws)
 export(ci.lc.mean.ws)
+export(ci.lc.mean.bs.complex)
+export(ci.lc.mean.ws.complex)
 export(ci.add.test)
 export(ci.cor.compare)
 export(ci.cor.dep.compare)

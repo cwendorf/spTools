@@ -303,3 +303,96 @@ ci.prop.ps.compare <- function(alpha, f00, f01, f10, f11) {
   rownames(results) <- c("Measure 1", "Measure 2", "Comparison")
   return(results)
 }
+
+#' Confidence Intervals for Two Between-Subjects Mean Contrasts and Their Difference
+#'
+#' Returns confidence intervals for two linear contrasts of independent group means
+#' and the difference between those contrasts.
+#'
+#' @param alpha Numeric scalar. Significance level (e.g., 0.05 for 95% CI).
+#' @param m Numeric vector of length J. Means for each group.
+#' @param sd Numeric vector of length J. Standard deviations for each group.
+#' @param n Numeric vector of length J. Sample sizes for each group.
+#' @param q1 Numeric vector of length J. Contrast weights for the first contrast.
+#' @param q2 Numeric vector of length J. Contrast weights for the second contrast.
+#' @param labels Character vector of length 2. Optional row labels for the two contrasts.
+#'
+#' @return A 3-row matrix with rows for contrast 1, contrast 2, and their difference.
+#' Each row contains `Estimate`, `SE`, `df`, `LL`, and `UL`. The contrast rows use
+#' the equal-variances-assumed row from `statpsych::ci.lc.mean.bs`. The difference
+#' row is computed from the contrast `q2 - q1`.
+#'
+#' @examples
+#' ci.lc.mean.bs.complex(
+#'   alpha = .05,
+#'   m = c(8, 11, 12),
+#'   sd = c(1.414, 2.211, 2.449),
+#'   n = c(10, 10, 10),
+#'   q1 = c(1/3, 1/3, 1/3),
+#'   q2 = c(1, 0, 0),
+#'   labels = c("GrandMean", "L1Only")
+#' )
+#'
+#' @export
+ci.lc.mean.bs.complex <- function(alpha, m, sd, n, q1, q2, labels = NULL) {
+  ci_lc_mean_bs <- getExportedValue("statpsych", "ci.lc.mean.bs")
+
+  r1 <- ci_lc_mean_bs(alpha = alpha, m = m, sd = sd, n = n, v = q1)[1, c("Estimate", "SE", "df", "LL", "UL")]
+  r2 <- ci_lc_mean_bs(alpha = alpha, m = m, sd = sd, n = n, v = q2)[1, c("Estimate", "SE", "df", "LL", "UL")]
+  rd <- ci_lc_mean_bs(alpha = alpha, m = m, sd = sd, n = n, v = q2 - q1)[1, c("Estimate", "SE", "df", "LL", "UL")]
+
+  results <- rbind(r1, r2, rd)
+  if (is.null(labels)) {
+    rownames(results) <- c("Contrast 1", "Contrast 2", "Difference")
+  } else {
+    rownames(results) <- c(labels, "Difference")
+  }
+  return(results)
+}
+
+#' Confidence Intervals for Two Within-Subjects Mean Contrasts and Their Difference
+#'
+#' Returns confidence intervals for two linear contrasts of within-subjects
+#' (repeated measures) group means and the difference between those contrasts.
+#'
+#' @param alpha Numeric scalar. Significance level (e.g., 0.05 for 95% CI).
+#' @param m Numeric vector of length J. Means for each condition.
+#' @param s Numeric vector of length J. Standard deviations for each condition.
+#' @param R Either a scalar (average correlation among all condition pairs) or a J x J
+#' correlation matrix among conditions.
+#' @param n Integer scalar. Sample size (number of subjects).
+#' @param q1 Numeric vector of length J. Contrast weights for the first contrast.
+#' @param q2 Numeric vector of length J. Contrast weights for the second contrast.
+#' @param labels Character vector of length 2. Optional row labels for the two contrasts.
+#'
+#' @return A 3-row matrix with rows for contrast 1, contrast 2, and their difference.
+#' Each row contains `Estimate`, `SE`, `df`, `LL`, and `UL`, as returned by
+#' `ci.lc.mean.ws`. The difference row is computed from the contrast `q2 - q1`.
+#'
+#' @examples
+#' R <- matrix(c(1, .7, .7, .7, 1, .7, .7, .7, 1), 3, 3)
+#' ci.lc.mean.ws.complex(
+#'   alpha = .05,
+#'   m = c(8, 11, 12),
+#'   s = c(1.414, 2.211, 2.449),
+#'   R = R,
+#'   n = 10,
+#'   q1 = c(1/3, 1/3, 1/3),
+#'   q2 = c(1, 0, 0),
+#'   labels = c("GrandMean", "L1Only")
+#' )
+#'
+#' @export
+ci.lc.mean.ws.complex <- function(alpha, m, s, R, n, q1, q2, labels = NULL) {
+  r1 <- ci.lc.mean.ws(alpha = alpha, m = m, s = s, R = R, n = n, q = q1)
+  r2 <- ci.lc.mean.ws(alpha = alpha, m = m, s = s, R = R, n = n, q = q2)
+  rd <- ci.lc.mean.ws(alpha = alpha, m = m, s = s, R = R, n = n, q = q2 - q1)
+
+  results <- rbind(r1, r2, rd)
+  if (is.null(labels)) {
+    rownames(results) <- c("Contrast 1", "Contrast 2", "Difference")
+  } else {
+    rownames(results) <- c(labels, "Difference")
+  }
+  return(results)
+}

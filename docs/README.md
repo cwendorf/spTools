@@ -21,10 +21,12 @@ These functions are versions of existing `statpsych` functions but use vectorize
 
 ### Comparison Wrappers
 
-These functions provide one-table wrapper workflows that combine group-level confidence intervals with comparison results.
+These functions provide one-table wrapper workflows that combine group-level or contrast-baed confidence intervals with comparison results.
 
 - [ci.mean2.compare](./ci.mean2.compare.md): Confidence Intervals to Compare Two Independent Means and Their Difference.
 - [ci.mean.ps.compare](./ci.mean.ps.compare.md): Confidence Intervals to Compare Two Paired Means and Their Difference.
+- [ci.lc.mean.bs.complex](./ci.lc.mean.bs.complex.md): Confidence Intervals for Two Between-Subjects Mean Contrasts and Their Difference.
+- [ci.lc.mean.ws.complex](./ci.lc.mean.ws.complex.md): Confidence Intervals for Two Within-Subjects Mean Contrasts and Their Difference.
 - [ci.cor.compare](./ci.cor.compare.md): Confidence Intervals to Compare Two Correlations and Their Difference.
 - [ci.cor.dep.compare](./ci.cor.dep.compare.md): Confidence Intervals to Compare Two Dependent Correlations and Their Difference.
 - [ci.prop.compare](./ci.prop.compare.md): Confidence Intervals to Compare Two Proportions.
