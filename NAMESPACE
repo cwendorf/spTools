@@ -2,6 +2,8 @@
 
 export(ci.lc.mean.ws)
 export(ci.add.test)
+export(ci.drop.test)
+export(ci.mean.ps.compare)
 export(ci.mean.ps.vec)
 export(ci.mean.vec)
 export(ci.mean2.compare)

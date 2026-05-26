@@ -3,6 +3,11 @@
 
 #' Add Test Statistics to Output
 #'
+#' Adds test statistics to confidence interval output by appending `t`, `df`, and
+#' `p` columns to results that contain `Estimate`, `SE`, `LL`, and `UL`.
+#' Degrees of freedom can be supplied directly, inferred from `n`, or estimated
+#' from confidence interval width when needed.
+#'
 #' @param results 1-row matrix output from Bonett CI functions (with Estimate, SE, LL, UL)
 #' @param df Optional degrees of freedom (if NULL, try to infer from n)
 #' @param n Optional sample size to infer df if df is missing
@@ -85,6 +90,37 @@ ci.add.test <- function(results, df = NULL, n = NULL, null_value = 0, conf_level
   )
   rownames(out) <- rownames(results)
   return(out)
+}
+
+#' Remove Test Statistics from Output
+#'
+#' Removes `t` and `p` columns from matrix or data-frame output. This is useful
+#' when test statistics were added for computation or checking but should be
+#' hidden in final displayed results.
+#'
+#' @param x A matrix or data frame.
+#'
+#' @return The same object class with `t` and `p` columns removed when present.
+#' If neither column exists, input is returned unchanged.
+#'
+#' @examples
+#' out <- ci.add.test(ci.mean.ps.vec(.05, c(58.2, 51.4), c(7.43, 8.92), .537, 30), n = 30)
+#' out |>
+#'   ci.drop.test()
+#'
+#' @export
+ci.drop.test <- function(x) {
+  if (!is.matrix(x) && !is.data.frame(x)) {
+    stop("x must be a matrix or data frame.")
+  }
+
+  if (is.null(colnames(x))) {
+    return(x)
+  }
+
+  keep_cols <- !(tolower(colnames(x)) %in% c("t", "p"))
+  x <- x[, keep_cols, drop = FALSE]
+  return(x)
 }
 
 #' Clean and Reformat Tukey Confidence Interval Output

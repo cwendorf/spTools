@@ -30,5 +30,8 @@ results <- matrix(
 ci.add.test(results, n = 30)
 }
 \description{
-Add test statistic, df, and p-value to CI output
+Adds test statistics to confidence interval output by appending \code{t}, \code{df}, and
+\code{p} columns to results that contain \code{Estimate}, \code{SE}, \code{LL}, and \code{UL}.
+Degrees of freedom can be supplied directly, inferred from \code{n}, or estimated
+from confidence interval width when needed.
 }

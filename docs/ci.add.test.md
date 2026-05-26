@@ -4,7 +4,10 @@
 
 ### Description
 
-Add test statistic, df, and p-value to CI output
+Adds test statistics to confidence interval output by appending `t`, `df`, and
+`p` columns to results that contain `Estimate`, `SE`, `LL`, and `UL`.
+Degrees of freedom can be supplied directly, inferred from `n`, or estimated
+from confidence interval width when needed.
 
 ### Usage
 

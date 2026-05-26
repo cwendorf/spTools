@@ -18,7 +18,9 @@ These functions are wrappers for existing `statpsych` functions but use vectoriz
 
 The functions provide additional analyses or additional formatting not present in other `statpsych` functions.
 
-- [ci.lc.mean.ws](./ci.lc.mean.ws.md): Confidence Interval for a Within-Subjects Linear Contrast of Means.
 - [ci.mean2.compare](./ci.mean2.compare.md): Confidence Intervals to Compare Two Independent Means and Their Difference.
+- [ci.mean.ps.compare](./ci.mean.ps.compare.md): Confidence Intervals to Compare Two Paired Means and Their Difference.
+- [ci.lc.mean.ws](./ci.lc.mean.ws.md): Confidence Interval for a Within-Subjects Linear Contrast of Means.
 - [ci.add.test](./ci.add.test.md): Add Test Statistics to Output.
+- [ci.drop.test](./ci.drop.test.md): Remove Test Statistics from Output.
 - [ci.tukey.reformat](./ci.tukey.reformat.md): Clean and Reformat Tukey Confidence Interval Output.
