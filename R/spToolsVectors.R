@@ -70,7 +70,6 @@ ci.mean.vec <- function(alpha, m, sd, n) {
 
 #' Confidence Interval for Independent Groups Mean Difference
 #'
-#' @description
 #' A wrapper function for ci.mean2 that accepts vectors for means, standard deviations, and sample sizes.
 #'
 #' @param alpha Alpha level for 1-alpha confidence
@@ -94,7 +93,6 @@ ci.mean2.vec <- function(alpha, m, sd, n) {
 
 #' Confidence Interval for a Independent Groups Standardized Mean Difference
 #'
-#' @description
 #' A wrapper function for ci.stdmean2 that accepts vectors for means, standard deviations, and sample sizes.
 #'
 #' @param alpha Alpha level for 1-alpha confidence
@@ -118,7 +116,6 @@ ci.stdmean2.vec <- function(alpha, m, sd, n) {
 
 #' Confidence Interval for Paired Samples Mean Difference
 #'
-#' @description
 #' A wrapper function for ci.mean.ps that accepts vectors for means and standard deviations.
 #'
 #' @param alpha Alpha level for 1-alpha confidence
@@ -149,7 +146,6 @@ ci.mean.ps.vec <- function(alpha, m, sd, cor, n) {
 
 #' Confidence Interval for a Paired Samples Standardized Mean Difference
 #'
-#' @description
 #' A wrapper function for ci.stdmean.ps that accepts vectors for means and standard deviations.
 #'
 #' @param alpha Alpha level for 1-alpha confidence
