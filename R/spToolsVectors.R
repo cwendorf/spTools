@@ -240,6 +240,42 @@ ci.cor2.vec <- function(alpha, cor, n) {
   ci.cor2(alpha = alpha, cor1 = cor[1], cor2 = cor[2], n1 = n[1], n2 = n[2])
 }
 
+#' Confidence Interval for Dependent Pearson Correlation Difference
+#'
+#' A wrapper function for `ci.cor.dep` that accepts a vector for the two
+#' correlations and a scalar or repeated vector for the common sample size.
+#'
+#' @param alpha Alpha level for 1-alpha confidence.
+#' @param cor Numeric vector of length 2: correlations for measures 1 and 2.
+#' @param cor12 Numeric scalar: correlation between the two predictor variables
+#' associated with `cor[1]` and `cor[2]`.
+#' @param n Numeric scalar or numeric vector of length 2 with equal values:
+#' common sample size.
+#'
+#' @return
+#' A 1-row matrix identical to the output of `ci.cor.dep`.
+#'
+#' @examples
+#' ci.cor.dep.vec(.05, cor = c(.396, .179), cor12 = .088, n = 166)
+#'
+#' @export
+ci.cor.dep.vec <- function(alpha, cor, cor12, n) {
+  if (length(cor) != 2) {
+    stop("Argument 'cor' must be a numeric vector of length 2.")
+  }
+  if (!is.numeric(cor12) || length(cor12) != 1) {
+    stop("Argument 'cor12' must be a single numeric value.")
+  }
+  if (length(n) == 1) {
+    n <- rep(n, 2)
+  }
+  if (length(n) != 2 || n[1] != n[2]) {
+    stop("Argument 'n' must be a scalar or a length-2 vector with equal values.")
+  }
+
+  ci.cor.dep(alpha = alpha, cor1 = cor[1], cor2 = cor[2], cor12 = cor12, n = n[1])
+}
+
 #' Confidence Intervals for a Set of Spearman Correlations
 #'
 #' A wrapper function for `ci.spear` that accepts lists of paired vectors.

@@ -181,8 +181,7 @@ ci.cor.dep.compare <- function(alpha, cor, cor12, n, s = 0) {
 
   groups <- ci.cor.vec(alpha = alpha, cor = cor, s = c(s, s), n = n)
 
-  compare <- ci.cor.dep(alpha = alpha, cor1 = cor[1], cor2 = cor[2], cor12 = cor12, n = n[1])
-  compare <- compare[1, c("Estimate", "SE", "LL", "UL")]
+  compare <- ci.cor.dep.vec(alpha = alpha, cor = cor, cor12 = cor12, n = n)[1, c("Estimate", "SE", "LL", "UL")]
 
   results <- rbind(groups, compare)
   rownames(results) <- c("Measure 1", "Measure 2", "Comparison")
