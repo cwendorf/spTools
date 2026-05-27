@@ -2,7 +2,7 @@
 % Please edit documentation in R/spToolsReformat.R
 \name{ci.drop.test}
 \alias{ci.drop.test}
-	itle{Remove Hypothesis Test Statistics from Confidence Interval Output}
+\title{Remove Hypothesis Test Statistics from Confidence Interval Output}
 \usage{
 ci.drop.test(x)
 }

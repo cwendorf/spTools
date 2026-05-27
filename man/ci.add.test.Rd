@@ -2,7 +2,7 @@
 % Please edit documentation in R/spToolsReformat.R
 \name{ci.add.test}
 \alias{ci.add.test}
-	itle{Add Hypothesis Test Statistics to Confidence Interval Output}
+\title{Add Hypothesis Test Statistics to Confidence Interval Output}
 \usage{
 ci.add.test(results, df = NULL, n = NULL, null_value = 0, conf_level = 0.95)
 }
