@@ -1,11 +1,12 @@
 # [`spTools`](https://github.com/cwendorf/spTools/)
 
-## Add Test Statistics to Output
+## Add Hypothesis Test Statistics to Confidence Interval Output
 
 ### Description
 
-Adds test statistics to confidence interval output by appending `t`, `df`, and
-`p` columns to results that contain `Estimate`, `SE`, `LL`, and `UL`.
+Adds hypothesis test statistics to confidence interval output by appending
+`t`, `df`, and `p` columns to results that contain `Estimate`, `SE`, `LL`, and
+`UL`.
 Degrees of freedom can be supplied directly, inferred from `n`, or estimated
 from confidence interval width when needed.
 

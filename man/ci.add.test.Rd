@@ -2,7 +2,7 @@
 % Please edit documentation in R/spToolsReformat.R
 \name{ci.add.test}
 \alias{ci.add.test}
-\title{Add Test Statistics to Output}
+	itle{Add Hypothesis Test Statistics to Confidence Interval Output}
 \usage{
 ci.add.test(results, df = NULL, n = NULL, null_value = 0, conf_level = 0.95)
 }
@@ -30,8 +30,9 @@ results <- matrix(
 ci.add.test(results, n = 30)
 }
 \description{
-Adds test statistics to confidence interval output by appending \code{t}, \code{df}, and
-\code{p} columns to results that contain \code{Estimate}, \code{SE}, \code{LL}, and \code{UL}.
+Adds hypothesis test statistics to confidence interval output by appending
+\code{t}, \code{df}, and \code{p} columns to results that contain \code{Estimate},
+\code{SE}, \code{LL}, and \code{UL}.
 Degrees of freedom can be supplied directly, inferred from \code{n}, or estimated
 from confidence interval width when needed.
 }

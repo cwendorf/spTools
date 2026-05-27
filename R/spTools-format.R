@@ -1,10 +1,11 @@
 # spTools
 ## Output Functions for Enhancing statpsych
 
-#' Add Test Statistics to Output
+#' Add Hypothesis Test Statistics to Confidence Interval Output
 #'
-#' Adds test statistics to confidence interval output by appending `t`, `df`, and
-#' `p` columns to results that contain `Estimate`, `SE`, `LL`, and `UL`.
+#' Adds hypothesis test statistics to confidence interval output by appending
+#' `t`, `df`, and `p` columns to results that contain `Estimate`, `SE`, `LL`,
+#' and `UL`.
 #' Degrees of freedom can be supplied directly, inferred from `n`, or estimated
 #' from confidence interval width when needed.
 #'
@@ -92,11 +93,11 @@ ci.add.test <- function(results, df = NULL, n = NULL, null_value = 0, conf_level
   return(out)
 }
 
-#' Remove Test Statistics from Output
+#' Remove Hypothesis Test Statistics from Confidence Interval Output
 #'
-#' Removes `t` and `p` columns from matrix or data-frame output. This is useful
-#' when test statistics were added for computation or checking but should be
-#' hidden in final displayed results.
+#' Removes hypothesis test statistics (`t` and `p`) from matrix or data-frame
+#' output. This is useful when test statistics were added for computation or
+#' checking but should be hidden in final displayed results.
 #'
 #' @param x A matrix or data frame.
 #'
@@ -125,23 +126,43 @@ ci.drop.test <- function(x) {
 
 #' Clean and Reformat Tukey Confidence Interval Output
 #'
-#' This function takes the output from the Tukey confidence interval function (`ci.tukey`)
-#' and reformats it by removing the `pair` columns and assigning more descriptive row names using the pair indices.
-#' Row names will be formatted as `"1 v 2"`, `"1 v 3"`, etc.
+#' Wrapper around `ci.tukey` that computes Tukey pairwise confidence intervals,
+#' then reformats output by removing pair-index columns and assigning readable
+#' row names such as `"1 v 2"`.
 #'
-#' @param ci_out A matrix or data frame produced by `ci.tukey`, where the first two columns represent pairwise comparisons.
+#' @param alpha Type I error rate used by `ci.tukey`.
+#' @param m Vector of group means.
+#' @param sd Vector of group standard deviations.
+#' @param n Vector of group sample sizes.
+#' @param ... Additional arguments passed through to `ci.tukey`.
 #'
-#' @return A cleaned matrix without the first two `pair` columns. The rows will be named according to the pairs compared,
-#' using the format `"1 v 2"`, `"1 v 3"`, etc.
+#' @return A reformatted matrix with row names based on comparison pairs and
+#' pair-index columns removed.
 #'
 #' @examples
-#' out <- ci.tukey(alpha = 0.05, m = c(5, 6, 7), sd = 2, n = 10)
-#' ci.tukey.reformat(out)
+#' ci.tukey.reformat(alpha = 0.05, m = c(5, 6, 7), sd = c(2, 2, 2), n = c(10, 10, 10))
 #'
 #' @export
-ci.tukey.reformat <- function(ci_out) {
-  pairs <- ci_out[, 1:2]
+ci.tukey.reformat <- function(alpha, m, sd, n, ...) {
+  ci_tukey <- NULL
+  if (exists("ci.tukey", mode = "function", inherits = TRUE)) {
+    ci_tukey <- get("ci.tukey", mode = "function", inherits = TRUE)
+  } else if (requireNamespace("statpsych", quietly = TRUE)) {
+    ci_tukey <- getFromNamespace("ci.tukey", "statpsych")
+  } else {
+    stop("ci.tukey is not available. Load statpsych or source ci.tukey first.")
+  }
+
+  ci_out <- ci_tukey(alpha = alpha, m = m, sd = sd, n = n, ...)
+
+  if (!is.matrix(ci_out) && !is.data.frame(ci_out)) {
+    stop("ci.tukey must return a matrix or data frame.")
+  }
+  if (ncol(ci_out) < 2) {
+    stop("ci.tukey output must include pair columns in the first two positions.")
+  }
+
+  pairs <- ci_out[, 1:2, drop = FALSE]
   rownames(ci_out) <- apply(pairs, 1, function(x) paste0(x[1], " v ", x[2]))
-  ci_out <- ci_out[, -(1:2), drop = FALSE]
-  return(ci_out)
+  ci_out[, -(1:2), drop = FALSE]
 }

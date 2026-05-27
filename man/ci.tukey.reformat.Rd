@@ -4,22 +4,29 @@
 \alias{ci.tukey.reformat}
 \title{Clean and Reformat Tukey Confidence Interval Output}
 \usage{
-ci.tukey.reformat(ci_out)
+ci.tukey.reformat(alpha, m, sd, n, ...)
 }
 \arguments{
-\item{ci_out}{A matrix or data frame produced by \code{ci.tukey}, where the first two columns represent pairwise comparisons.}
+\item{alpha}{Type I error rate used by \code{ci.tukey}.}
+
+\item{m}{Vector of group means.}
+
+\item{sd}{Vector of group standard deviations.}
+
+\item{n}{Vector of group sample sizes.}
+
+\item{...}{Additional arguments passed through to \code{ci.tukey}.}
 }
 \value{
-A cleaned matrix without the first two \code{pair} columns. The rows will be named according to the pairs compared,
-using the format \code{"1 v 2"}, \code{"1 v 3"}, etc.
+A reformatted matrix with row names based on comparison pairs and
+pair-index columns removed.
 }
 \description{
-This function takes the output from the Tukey confidence interval function (\code{ci.tukey})
-and reformats it by removing the \code{pair} columns and assigning more descriptive row names using the pair indices.
-Row names will be formatted as \code{"1 v 2"}, \code{"1 v 3"}, etc.
+Wrapper around \code{ci.tukey} that computes Tukey pairwise confidence intervals,
+then reformats output by removing pair-index columns and assigning readable
+row names such as \code{"1 v 2"}.
 }
 \examples{
-out <- ci.tukey(alpha = 0.05, m = c(5, 6, 7), sd = 2, n = 10)
-ci.tukey.reformat(out)
+ci.tukey.reformat(alpha = 0.05, m = c(5, 6, 7), sd = c(2, 2, 2), n = c(10, 10, 10))
 
 }

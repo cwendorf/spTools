@@ -44,6 +44,6 @@ These functions provide one-table wrapper workflows that combine group-level or 
 
 These functions help standardize or reformat output for reporting.
 
-- [ci.add.test](./ci.add.test.md): Add Test Statistics to Output.
-- [ci.drop.test](./ci.drop.test.md): Remove Test Statistics from Output.
+- [ci.add.test](./ci.add.test.md): Add Hypothesis Test Statistics to Confidence Interval Output.
+- [ci.drop.test](./ci.drop.test.md): Remove Hypothesis Test Statistics from Confidence Interval Output.
 - [ci.tukey.reformat](./ci.tukey.reformat.md): Clean and Reformat Tukey Confidence Interval Output.

@@ -4,28 +4,30 @@
 
 ### Description
 
-This function takes the output from the Tukey confidence interval function (ci.tukey)
-and reformats it by removing the pair columns and assigning more descriptive row names using the pair indices.
-Row names will be formatted as "1 v 2", "1 v 3", etc.
+Wrapper around `ci.tukey` that computes Tukey pairwise confidence intervals,
+then reformats output by removing pair-index columns and assigning readable
+row names such as "1 v 2".
 
 ### Usage
 
 ```r
-ci.tukey.reformat(ci_out)
+ci.tukey.reformat(alpha, m, sd, n, ...)
 ```
 
 ### Arguments
 
-- **`ci_out`**: A matrix or data frame produced by ci.tukey, where the first two columns represent pairwise comparisons.
+- **`alpha`**: Type I error rate used by `ci.tukey`.
+- **`m`**: Vector of group means.
+- **`sd`**: Vector of group standard deviations.
+- **`n`**: Vector of group sample sizes.
+- **`...`**: Additional arguments passed through to `ci.tukey`.
 
 ### Value
 
-A cleaned matrix without the first two pair columns. The rows will be named according to the pairs compared,
-using the format "1 v 2", "1 v 3", etc.
+A reformatted matrix with row names based on comparison pairs and pair-index columns removed.
 
 ### Examples
 
 ```r
-out <- ci.tukey(alpha = 0.05, m = c(5, 6, 7), sd = 2, n = 10)
-ci.tukey.reformat(out)
+ci.tukey.reformat(alpha = 0.05, m = c(5, 6, 7), sd = c(2, 2, 2), n = c(10, 10, 10))
 ```

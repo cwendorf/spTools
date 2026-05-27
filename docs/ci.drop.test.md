@@ -1,12 +1,12 @@
 # [`spTools`](https://github.com/cwendorf/spTools/)
 
-## Remove Test Statistics from Output
+## Remove Hypothesis Test Statistics from Confidence Interval Output
 
 ### Description
 
-Removes `t` and `p` columns from matrix or data-frame output. This is useful
-when test statistics were added for computation or checking but should be
-hidden in final displayed results.
+Removes hypothesis test statistics (`t` and `p`) from matrix or data-frame
+output. This is useful when test statistics were added for computation or
+checking but should be hidden in final displayed results.
 
 ### Usage
 
