@@ -26,7 +26,11 @@ If neither column exists, input is returned unchanged.
 ### Examples
 
 ```r
-out <- ci.add.test(ci.mean.ps.vec(.05, c(58.2, 51.4), c(7.43, 8.92), .537, 30), n = 30)
-out |>
-  ci.drop.test()
+results <- matrix(
+  c(10.5, 1.2, 8.1, 12.9),
+  nrow = 1,
+  dimnames = list(NULL, c("Estimate", "SE", "LL", "UL"))
+)
+out <- ci.add.test(results, n = 30)
+ci.drop.test(out)
 ```
