@@ -1,7 +1,7 @@
 # spTools
 ## Wrapper Functions for Comparison Tables
 
-#' Confidence Intervals to Compare Two Independent Means and Their Difference
+#' Confidence Intervals for Two Independent Means and Their Difference
 #'
 #' Returns confidence intervals for each group mean and a single comparison row
 #' for the two-group mean difference.
@@ -37,7 +37,7 @@ ci.mean2.compare <- function(alpha, m, sd, n) {
   return(results)
 }
 
-#' Confidence Intervals to Compare Two Paired Means and Their Difference
+#' Confidence Intervals for Two Paired Means and Their Difference
 #'
 #' Returns confidence intervals for each paired measurement mean and a single
 #' comparison row for the paired mean difference.
@@ -79,7 +79,7 @@ ci.mean.ps.compare <- function(alpha, m, sd, cor, n) {
   return(results)
 }
 
-#' Confidence Intervals to Compare Two Correlations and Their Difference
+#' Confidence Intervals for Two Correlations and Their Difference
 #'
 #' Returns confidence intervals for each group correlation and a single
 #' comparison row for the two-group correlation difference.
@@ -137,7 +137,7 @@ ci.cor.compare <- function(alpha, cor, s, n) {
   return(results)
 }
 
-#' Confidence Intervals to Compare Two Dependent Correlations and Their Difference
+#' Confidence Intervals for Two Dependent Correlations and Their Difference
 #'
 #' Returns confidence intervals for each correlation and a single comparison
 #' row for the dependent-correlation difference.
@@ -188,7 +188,7 @@ ci.cor.dep.compare <- function(alpha, cor, cor12, n, s = 0) {
   return(results)
 }
 
-#' Confidence Intervals to Compare Two Proportions
+#' Confidence Intervals for Two Proportions and Their Difference or Ratio
 #'
 #' Returns confidence intervals for each group proportion and comparison rows
 #' for the proportion difference, the proportion ratio, or both.
@@ -252,7 +252,7 @@ ci.prop.compare <- function(alpha, f, n, type = c("difference", "ratio", "both")
   return(results)
 }
 
-#' Confidence Intervals to Compare Two Paired Proportions and Their Difference
+#' Confidence Intervals for Two Paired Proportions and Their Difference
 #'
 #' Returns confidence intervals for each paired-measurement proportion and a
 #' single comparison row for the paired proportion difference.

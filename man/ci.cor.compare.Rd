@@ -2,7 +2,7 @@
 % Please edit documentation in R/spToolsWrappers.R
 \name{ci.cor.compare}
 \alias{ci.cor.compare}
-\title{Confidence Intervals to Compare Two Correlations and Their Difference}
+\title{Confidence Intervals for Two Correlations and Their Difference}
 \usage{
 ci.cor.compare(alpha, cor, s, n)
 }

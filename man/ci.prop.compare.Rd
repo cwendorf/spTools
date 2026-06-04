@@ -2,7 +2,7 @@
 % Please edit documentation in R/spToolsWrappers.R
 \name{ci.prop.compare}
 \alias{ci.prop.compare}
-\title{Confidence Intervals to Compare Two Proportions}
+\title{Confidence Intervals for Two Proportions and Their Difference or Ratio}
 \usage{
 ci.prop.compare(alpha, f, n, type = c("difference", "ratio", "both"))
 }

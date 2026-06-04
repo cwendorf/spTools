@@ -6,7 +6,7 @@ This section is the reference for `spTools`. Each page documents one exported fu
 
 ### Additional Functions
 
-These functions provide additional analyses missing from `statpsych` but still consistent with package.
+These functions provide additional analyses missing from `statpsych` but still consistent with the package.
 
 - [ci.lc.mean.ws](./ci.lc.mean.ws.md): Confidence Interval for a Within-Subjects Linear Contrast of Means.
 - [ci.2x2.prop.ws](./ci.2x2.prop.ws.md): Confidence Intervals for 2x2 Within-Subjects Proportion Effects.
@@ -29,20 +29,20 @@ These functions are versions of existing `statpsych` functions that use vectoriz
 
 ### Comparison Wrappers
 
-These functions provide one-table wrapper workflows that combine group-level or contrast-based confidence intervals with comparison results.
+These functions provide one-table wrapper workflows that combine other functions for the sake of comparisons and contrasts.
 
-- [ci.mean2.compare](./ci.mean2.compare.md): Confidence Intervals to Compare Two Independent Means and Their Difference.
-- [ci.mean.ps.compare](./ci.mean.ps.compare.md): Confidence Intervals to Compare Two Paired Means and Their Difference.
+- [ci.mean2.compare](./ci.mean2.compare.md): Confidence Intervals for Two Independent Means and Their Difference.
+- [ci.mean.ps.compare](./ci.mean.ps.compare.md): Confidence Intervals for Two Paired Means and Their Difference.
 - [ci.lc.mean.bs.complex](./ci.lc.mean.bs.complex.md): Confidence Intervals for Two Between-Subjects Mean Contrasts and Their Difference.
 - [ci.lc.mean.ws.complex](./ci.lc.mean.ws.complex.md): Confidence Intervals for Two Within-Subjects Mean Contrasts and Their Difference.
-- [ci.cor.compare](./ci.cor.compare.md): Confidence Intervals to Compare Two Correlations and Their Difference.
-- [ci.cor.dep.compare](./ci.cor.dep.compare.md): Confidence Intervals to Compare Two Dependent Correlations and Their Difference.
-- [ci.prop.compare](./ci.prop.compare.md): Confidence Intervals to Compare Two Proportions.
-- [ci.prop.ps.compare](./ci.prop.ps.compare.md): Confidence Intervals to Compare Two Paired Proportions and Their Difference.
+- [ci.cor.compare](./ci.cor.compare.md): Confidence Intervals for Two Correlations and Their Difference.
+- [ci.cor.dep.compare](./ci.cor.dep.compare.md): Confidence Intervals for Two Dependent Correlations and Their Difference.
+- [ci.prop.compare](./ci.prop.compare.md): Confidence Intervals for Two Proportions and Their Difference or Ratio.
+- [ci.prop.ps.compare](./ci.prop.ps.compare.md): Confidence Intervals for Two Paired Proportions and Their Difference.
 
 ### Formatters
 
-These functions help standardize or reformat output for reporting.
+These functions help extend, standardize, or reformat output from other functions for the sake of reporting.
 
 - [ci.add.test](./ci.add.test.md): Add Hypothesis Test Statistics to Confidence Interval Output.
 - [ci.drop.test](./ci.drop.test.md): Remove Hypothesis Test Statistics from Confidence Interval Output.

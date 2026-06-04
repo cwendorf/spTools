@@ -1,6 +1,6 @@
 # [`spTools`](https://github.com/cwendorf/spTools/)
 
-## Confidence Intervals to Compare Two Proportions
+## Confidence Intervals for Two Proportions and Their Difference or Ratio
 
 ### Description
 

@@ -1,6 +1,6 @@
 # [`spTools`](https://github.com/cwendorf/spTools/)
 
-## Confidence Intervals to Compare Two Paired Means and Their Difference
+## Confidence Intervals for Two Paired Means and Their Difference
 
 ### Description
 

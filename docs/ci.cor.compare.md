@@ -1,6 +1,6 @@
 # [`spTools`](https://github.com/cwendorf/spTools/)
 
-## Confidence Intervals to Compare Two Correlations and Their Difference
+## Confidence Intervals for Two Correlations and Their Difference
 
 ### Description
 

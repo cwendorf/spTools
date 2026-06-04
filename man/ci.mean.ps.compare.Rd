@@ -2,7 +2,7 @@
 % Please edit documentation in R/spToolsWrappers.R
 \name{ci.mean.ps.compare}
 \alias{ci.mean.ps.compare}
-\title{Confidence Intervals to Compare Two Paired Means and Their Difference}
+\title{Confidence Intervals for Two Paired Means and Their Difference}
 \usage{
 ci.mean.ps.compare(alpha, m, sd, cor, n)
 }
