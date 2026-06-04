@@ -29,7 +29,9 @@ source("http://raw.githubusercontent.com/cwendorf/spTools/main/source-spTools.R"
 
 This package includes the following documentation:
 
+- [Introduction](./docs/README.md): Overview of the package, listing of associated packages, and links to all resources.
 - [Reference](./docs/README.md): Documentation for all exported functions, including usage, arguments, return values, and examples.
+- [Articles](./docs/vignettes/README.md): Examples demonstrating how to use `spTools` in conjunction with `statpsych`.
 
 ### Contact
 
