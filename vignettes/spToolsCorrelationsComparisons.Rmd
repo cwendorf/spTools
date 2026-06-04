@@ -1,0 +1,80 @@
+---
+title: "Confidence Intervals for Correlation Comparisons"
+output:
+  github_document:
+    preserve_yaml: FALSE
+vignette: >
+  %\VignetteIndexEntry{Confidence Intervals for Correlation Comparisons}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(fig.width = 7, fig.height = 7, fig.path = "figures/", echo = TRUE, warning = FALSE, message = FALSE, comment = NA)
+devtools::source_gist("8e6e5dc401e3fc1042ef7a030f9d19c7", filename = "revised_toc.R")
+```
+
+```{r, include=FALSE}
+if (!require(remotes)) install.packages("remotes")
+if (!require(statpsych)) {remotes::install_github("dbonett/statpsych")}
+library(statpsych)
+if (!require(spTools)) {remotes::install_github("cwendorf/spTools")}
+library(spTools)
+```
+
+## Confidence Intervals for Correlation Comparisons
+
+This vignette compares the use of `statpsych` and `spTools` functions to compute confidence intervals for correlation comparisons. 
+
+```{r toc, echo=FALSE}
+knitr::current_input() |> revised_toc(base_level = 3, toc_depth = 1)
+```
+
+---
+
+### Independent Group Correlation Comparisons
+
+Use `statpsych` functions to build group and comparison rows manually.
+
+```{r}
+ci.cor.vec(alpha = .05, cor = c(.64, .31), s = c(0, 0), n = c(200, 200)) -> groups
+ci.cor2.vec(alpha = .05, cor = c(.64, .31), n = c(200, 200))[1, c("Estimate", "SE", "LL", "UL")] -> compare
+results <- rbind(groups, compare)
+rownames(results) <- c("Group 1", "Group 2", "Comparison")
+results
+```
+
+Or use the `spTools` helper function to produce the same independent-group comparison table.
+
+```{r}
+ci.cor.compare(
+  alpha = .05,
+  cor = c(.64, .31),
+  s = c(0, 0),
+  n = c(200, 200)
+)
+```
+
+### Dependent Correlation Comparisons
+
+Use `statpsych` functions to build measure and comparison rows manually for the dependent-correlation case.
+
+```{r}
+ci.cor.vec(alpha = .05, cor = c(.396, .179), s = c(0, 0), n = c(166, 166)) -> groups
+ci.cor.dep.vec(alpha = .05, cor = c(.396, .179), cor12 = .088, n = 166)[1, c("Estimate", "SE", "LL", "UL")] -> compare
+results <- rbind(groups, compare)
+rownames(results) <- c("Measure 1", "Measure 2", "Comparison")
+results
+```
+
+Or use the `spTools` helper function to produce the same dependent-correlation comparison table.
+
+```{r}
+ci.cor.dep.compare(
+  alpha = .05,
+  cor = c(.396, .179),
+  cor12 = .088,
+  n = 166,
+  s = 0
+)
+```

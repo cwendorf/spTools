@@ -1,0 +1,80 @@
+---
+title: "Confidence Intervals for Correlations"
+output:
+  github_document:
+    preserve_yaml: FALSE
+vignette: >
+  %\VignetteIndexEntry{Confidence Intervals for Correlations}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(fig.width = 7, fig.height = 7, fig.path = "figures/", echo = TRUE, warning = FALSE, message = FALSE, comment = NA)
+devtools::source_gist("8e6e5dc401e3fc1042ef7a030f9d19c7", filename = "revised_toc.R")
+```
+
+```{r, include=FALSE}
+if (!require(remotes)) install.packages("remotes")
+if (!require(statpsych)) {remotes::install_github("dbonett/statpsych")}
+library(statpsych)
+if (!require(spTools)) {remotes::install_github("cwendorf/spTools")}
+library(spTools)
+```
+
+## Confidence Intervals for Correlations
+
+This vignette compares the use of `statpsych` and `spTools` functions to compute confidence intervals for correlations and differences between correlations. 
+
+```{r toc, echo=FALSE}
+knitr::current_input() |> revised_toc(base_level = 3, toc_depth = 1)
+```
+
+---
+
+### Confidence Intervals for a Set of Pearson (or Partial) Correlations
+
+Compare separate `statpsych` calls with one vectorized `spTools` call.
+
+```{r}
+# statpsych version
+ci.cor(alpha = .05, cor = .60, s = 0, n = 150)
+ci.cor(alpha = .05, cor = .70, s = 1, n = 135)
+
+# spTools version
+ci.cor.vec(alpha = .05, cor = c(.60, .70), s = c(0, 1), n = c(150, 135))
+```
+
+### Confidence Interval for Independent Groups Pearson Correlation Difference
+
+Compare two-group Pearson difference output between packages.
+
+```{r}
+# statpsych version
+ci.cor2(alpha = .05, cor1 = .64, cor2 = .31, n1 = 200, n2 = 200)
+
+# spTools version
+ci.cor2.vec(alpha = .05, cor = c(.64, .31), n = c(200, 200))
+```
+
+### Confidence Intervals for a Set of Spearman Correlations
+
+Define two paired datasets.
+
+```{r}
+y1 <- c(21, 4, 9, 12, 35, 18, 10, 22, 24, 1, 6, 8, 13, 16, 19)
+x1 <- c(67, 28, 30, 28, 52, 40, 25, 37, 44, 10, 14, 20, 28, 40, 51)
+y2 <- c(5, 7, 9, 10, 13, 15, 18, 20, 22, 25)
+x2 <- c(3, 5, 8, 8, 11, 12, 16, 18, 19, 23)
+```
+
+Compare correlations from separate vs vectorized calls.
+
+```{r}
+# statpsych version
+ci.spear(alpha = .05, y = y1, x = x1)
+ci.spear(alpha = .05, y = y2, x = x2)
+
+# spTools version
+ci.spear.vec(alpha = .05, y = list(y1, y2), x = list(x1, x2))
+```
