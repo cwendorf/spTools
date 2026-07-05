@@ -4,9 +4,9 @@
 
 This section contains vignettes for `spTools`. Focus here is on demonstrating how `spTools` adds to the features of `statpsych`.
 
-### Vectorized Versions
+### Vector Input Wrappers
 
-`spTools` offers versions of existing `statpsych` functions that use vectorized input for parameters.
+`spTools` offers wrappers for existing `statpsych` functions that instead use vector input for parameters.
 
 - [Confidence Intervals for Means](./spToolsMeans.md): Compares nonvectorized and vectorized methods for calculating confidence intervals for means and their differences.
 - [Confidence Intervals for Correlations](./spToolsCorrelations.md): Compares nonvectorized and vectorized methods for calculating confidence intervals for correlations and their differences.

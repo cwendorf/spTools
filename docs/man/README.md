@@ -11,9 +11,9 @@ These functions provide additional analyses missing from `statpsych` but still c
 - [ci.lc.mean.ws](./ci.lc.mean.ws.md): Confidence Interval for a Within-Subjects Linear Contrast of Means.
 - [ci.2x2.prop.ws](./ci.2x2.prop.ws.md): Confidence Intervals for 2x2 Within-Subjects Proportion Effects.
 
-### Vectorized Versions
+### Vector Input Wrappers
 
-These functions are versions of existing `statpsych` functions that use vectorized input for parameters.
+These functions are wrappers for existing `statpsych` functions that instead use vector input for parameters.
 
 - [ci.mean.vec](./ci.mean.vec.md): Confidence Intervals for a Set of Means.
 - [ci.mean.ps.vec](./ci.mean.ps.vec.md): Confidence Interval for Paired Samples Mean Difference.
