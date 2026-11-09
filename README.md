@@ -33,12 +33,6 @@ This package includes the following documentation:
 - [Reference](./docs/man/README.md): Documentation for all exported functions, including usage, arguments, return values, and examples.
 - [Articles](./docs/vignettes/README.md): Examples demonstrating how to use `spTools` in conjunction with `statpsych`.
 
-### Contact
-
-- GitHub Issues: [https://github.com/cwendorf/spTools/issues](https://github.com/cwendorf/spTools/issues)
-- Author Email: [cwendorf@uwsp.edu](mailto:cwendorf@uwsp.edu)
-- Author Homepage: [https://github.com/cwendorf](https://github.com/cwendorf)
-
 ### Citation
 
 Wendorf, C.A. (2026). *spTools: Additional functions for the statpsych package* [R Package]. [https://github.com/cwendorf/spTools](https://github.com/cwendorf/spTools)
