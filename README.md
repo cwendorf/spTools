@@ -2,8 +2,9 @@
 
 ## Additional Functions for the `statpsych` Package
 
-[![Minimal R Version](https://img.shields.io/badge/R%3E%3D-3.6.2-6666ff?style=for-the-badge)](https://cran.r-project.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Minimal R Version](https://img.shields.io/badge/R%3E%3D-3.6.2-blue?style=for-the-badge)](https://cran.r-project.org/)
+[![GitHub Release](https://img.shields.io/github/v/release/cwendorf/spTools?style=for-the-badge)](https://github.com/cwendorf/spTools/releases/latest)
+[![Project Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)](https://www.repostatus.org/#active)
 
 ### Overview
 

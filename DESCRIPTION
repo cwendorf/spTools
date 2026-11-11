@@ -2,7 +2,7 @@ Package: spTools
 Type: Package
 Title: Additional Functions for the statpsych Package
 Description: `spTools` is a small collection of functions that add to the array of tools in Doug Bonett's `statpsych` package. Some functions provide calculations not present in `statpsych`, whereas other functions offer vectorized versions of `statpsych` functions. Other functions attempt to further standardize `statpsych` output. 
-Version: 0.1.0
+Version: 0.260604
 Authors@R: person("Craig", "Wendorf", email = "cwendorf@uwsp.edu", role = c("aut", "cre"))
 License: MIT + file LICENSE
 URL: https://github.com/cwendorf/spTools
