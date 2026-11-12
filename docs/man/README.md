@@ -4,6 +4,13 @@
 
 This section is the reference for `spTools`. Each page documents one exported function, including usage, arguments, return values, and examples.
 
+- [Additional Functions](#additional-functions)
+- [Vector Input Wrappers](#vector-input-wrappers)
+- [Comparison Wrappers](#comparison-wrappers)
+- [Formatters](#formatters)
+
+---
+
 ### Additional Functions
 
 These functions provide additional analyses missing from `statpsych` but still consistent with the package.

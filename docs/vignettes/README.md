@@ -2,7 +2,12 @@
 
 ## Articles
 
-This section contains vignettes for `spTools`. Focus here is on demonstrating how `spTools` adds to the features of `statpsych`.
+This section contains articles for `spTools`. They show how `spTools` extends `statpsych` with vector-input and comparison-wrapper workflows.
+
+- [Vector Input Wrappers](#vector-input-wrappers)
+- [Comparison Wrappers](#comparison-wrappers)
+
+---
 
 ### Vector Input Wrappers
 
